@@ -1,6 +1,5 @@
-Branch ini menangani tentang 
-Bagian Halaman Keranjang Dan Bagian Halaman Detail Produk yang dijual ditoko Bunga
-=======
+Aplikasi Toko Bunga
+===================
 Anggota Kelompok :
 1. Benecia Kiarra 		( 2226240052 )
 2. Rara Ananta Bunga 	( 2226240069 )
