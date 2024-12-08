@@ -5,4 +5,3 @@ Anggota Kelompok :
 2. Rara Ananta Bunga 	( 2226240069 )
 3. Erika Febriyani 		( 2226240050 )
 4. Rara Supriyadi 		( 2226240054 )
-
