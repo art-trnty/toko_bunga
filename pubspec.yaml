@@ -23,4 +23,13 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+  assets:
+    - assets/nature.jpg
+    - assets/naturee.jpg
+    - assets/houseplant-peperomia.jpg
+    - assets/houseplant-crassula.jpg
+    - assets/houseplant-asplenium.jpg
+    - assets/vitamin-b.jpg
+    - assets/Peperomia Houseplant.png
+    - assets/Peperomia Obtusfolia.png
 
