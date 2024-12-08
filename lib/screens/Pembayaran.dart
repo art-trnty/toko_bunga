@@ -57,7 +57,7 @@ class PaymentScreen extends StatelessWidget {
                 onPressed: () {
                   // Proses pembayaran
                 },
-                child: Text('Bayar Sekarang'),
+                child: Text('Bayar Disini'),
               ),
             ],
             ),

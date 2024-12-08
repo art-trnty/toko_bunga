@@ -40,7 +40,7 @@ class RegistrationPage extends StatelessWidget {
               // Sub-Judul
               RichText(
                 text: TextSpan(
-                  text: "Jika Anda sudah memiliki akun? Anda bisa ",
+                  text: "Anda sudah memiliki akun? Anda bisa ",
                   style: const TextStyle(color: Colors.black54, fontSize: 14),
                   children: [
                     TextSpan(
@@ -58,7 +58,7 @@ class RegistrationPage extends StatelessWidget {
               const TextField(
                 decoration: InputDecoration(
                   labelText: "Email",
-                  hintText: "Masukkan alamat emailmu",
+                  hintText: "Masukkan emailmu",
                   prefixIcon: Icon(Icons.email),
                   border: UnderlineInputBorder(),
                 ),
