@@ -53,7 +53,7 @@ class CartItem extends StatelessWidget {
               Text(
                 "Rp ${item.price.toString().replaceAllMapped(RegExp(r'\B(?=(\d{3})+(?!\d))'), (match) => '.')}",
                 style:
-                TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+                    TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8),
               Row(
