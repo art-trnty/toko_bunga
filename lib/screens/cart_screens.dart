@@ -51,7 +51,7 @@ class _CartScreenState extends State<CartScreen> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            // Handle back button
+            Navigator.pop(context); // Kembali Ke Halaman Sebelumnya
           },
         ),
       ),
