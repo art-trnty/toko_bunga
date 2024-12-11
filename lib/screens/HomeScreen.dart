@@ -14,11 +14,11 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    HomeContent(),
-    SearchScreen(),
-    PaymentScreen(),
+    //home: HomeContent(),
+    //home: SearchScreen(),
+   // home: PaymentScreen(),
     TokoTanamanList(tokoTanamanList: []), // Ganti dengan daftar toko jika ada
-    RegistrationPage(), // Ganti dengan screen pendaftaran jika ada
+    SigninscreenPage(), // Ganti dengan screen pendaftaran jika ada
 
   ];
 
