@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:toko_bunga/screens/DaftarTokoScreen.dart';
-import 'package:toko_bunga/screens/HomeScreen.dart';
-import 'package:toko_bunga/screens/Pembayaran.dart';
 import 'package:toko_bunga/screens/SearchScreen.dart';
+import 'package:toko_bunga/screens/Pembayaran.dart';
+import 'package:toko_bunga/screens/DaftarTokoScreen.dart';
 import 'package:toko_bunga/screens/SignInScreen.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -17,9 +17,9 @@ class _HomeScreenState extends State<HomeScreen> {
     HomeContent(),
     SearchScreen(),
     PaymentScreen(),
-    TokoTanamanList(tokoTanamanList: [],),
-    RegistrationPage(),
-    //ProfileScreen(),
+    TokoTanamanList(tokoTanamanList: []), // Ganti dengan daftar toko jika ada
+    RegistrationPage(), // Ganti dengan screen pendaftaran jika ada
+
   ];
 
   void _onItemTapped(int index) {
@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex, // Menggunakan currentIndex
+        currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
