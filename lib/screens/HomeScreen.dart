@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:toko_bunga/screens/SearchScreen.dart';
+import 'package:toko_bunga/screens/Pembayaran.dart';
+import 'package:toko_bunga/screens/DaftarTokoScreen.dart';
+import 'package:toko_bunga/screens/SignInScreen.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -10,9 +15,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _screens = [
     HomeContent(),
-    Center(child: Text('Search Screen')),
-    Center(child: Text('Toko Screen')),
-    Center(child: Text('Profile Screen')),
+    SearchScreen(),
+    PaymentScreen(),
+    TokoTanamanList(tokoTanamanList: []), // Ganti dengan daftar toko jika ada
+    RegistrationPage(), // Ganti dengan screen pendaftaran jika ada
+
   ];
 
   void _onItemTapped(int index) {
@@ -29,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,  // Menggunakan currentIndex
+        currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -74,8 +81,10 @@ class HomeContent extends StatelessWidget {
         Expanded(
           child: ListView(
             children: [
-              _buildTokoCard('Toko Flora Jaya', 'Jl. Puring Asri Blok C2', '10-15 mins'),
-              _buildTokoCard('Nature\'s Bloom Shop', 'Jl. Pohon Kecil No. 56', '7-10 mins'),
+              _buildTokoCard(
+                  'Toko Flora Jaya', 'Jl. Puring Asri Blok C2', '10-15 mins'),
+              _buildTokoCard('Nature\'s Bloom Shop', 'Jl. Pohon Kecil No. 56',
+                  '7-10 mins'),
             ],
           ),
         ),
@@ -85,13 +94,13 @@ class HomeContent extends StatelessWidget {
 
   Widget _buildTokoCard(String nama, String alamat, String waktu) {
     return Card(
-        margin: EdgeInsets.all(10),
-        child: ListTile(
-          leading: Icon(Icons.store, color: Colors.green),
-          title: Text(nama),
-          subtitle: Text('$alamat • $waktu'),
-          trailing: Icon(Icons.favorite_border),
-        ),
-        );
-    }
+      margin: EdgeInsets.all(10),
+      child: ListTile(
+        leading: Icon(Icons.store, color: Colors.green),
+        title: Text(nama),
+        subtitle: Text('$alamat • $waktu'),
+        trailing: Icon(Icons.favorite_border),
+      ),
+    );
+  }
 }
