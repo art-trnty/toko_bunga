@@ -1,105 +1,83 @@
 import 'package:flutter/material.dart';
-import 'package:toko_bunga/screens/SearchScreen.dart';
-import 'package:toko_bunga/screens/Pembayaran.dart';
-import 'package:toko_bunga/screens/DaftarTokoScreen.dart';
-import 'package:toko_bunga/screens/SignInScreen.dart';
 
+import 'LoginScreen.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0;
-
-  final List<Widget> _screens = [
-    //home: HomeContent(),
-    //home: SearchScreen(),
-   // home: PaymentScreen(),
-    TokoTanamanList(tokoTanamanList: []), // Ganti dengan daftar toko jika ada
-    SigninscreenPage(), // Ganti dengan screen pendaftaran jika ada
-
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tanaman Hias'),
+        title: Text('Home Screen'),
+        backgroundColor: Colors.green,
       ),
-      body: _screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.store),
-            label: 'Toko',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class HomeContent extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: TextField(
-            decoration: InputDecoration(
-              hintText: 'Cari Toko tanaman hias terdekat...',
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 50),
+            Text(
+              'Selamat datang di aplikasi Toko Bunga!',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
-          ),
+            const SizedBox(height: 20),
+            Text(
+              'Ini adalah halaman utama setelah Anda berhasil login.',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black54,
+              ),
+            ),
+            const SizedBox(height: 40),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Navigasi ke halaman lain, misalnya halaman produk atau lainnya
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: const Text(
+                  'Lihat Produk',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Logout atau navigasi ke halaman login
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: const Text(
+                  'Keluar',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ],
         ),
-        Expanded(
-          child: ListView(
-            children: [
-              _buildTokoCard(
-                  'Toko Flora Jaya', 'Jl. Puring Asri Blok C2', '10-15 mins'),
-              _buildTokoCard('Nature\'s Bloom Shop', 'Jl. Pohon Kecil No. 56',
-                  '7-10 mins'),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildTokoCard(String nama, String alamat, String waktu) {
-    return Card(
-      margin: EdgeInsets.all(10),
-      child: ListTile(
-        leading: Icon(Icons.store, color: Colors.green),
-        title: Text(nama),
-        subtitle: Text('$alamat • $waktu'),
-        trailing: Icon(Icons.favorite_border),
       ),
     );
   }

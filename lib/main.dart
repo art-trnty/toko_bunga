@@ -14,11 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      //home: SigninscreenPage(),
-      //home: TokoTanamanList(),
-      home: SearchScreen(),
-
+      //home: SearchScreen(),
+      //home: HomeScreen(),
+      home: SigninscreenPage(),
     );
   }
 }
