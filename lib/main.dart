@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       //home: SearchScreen(),
-      //home: HomeScreen(),
-      home: SigninscreenPage(),
+      home: HomeScreen(),
+     // home: SigninscreenPage(),
     );
   }
 }

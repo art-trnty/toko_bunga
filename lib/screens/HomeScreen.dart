@@ -46,6 +46,10 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+        backgroundColor: Colors.green,  // Latar belakang hijau
+        selectedItemColor: Colors.white,  // Ikon yang dipilih menjadi putih
+        unselectedItemColor: Colors.white,  // Ikon yang tidak dipilih menjadi putih
+        type: BottomNavigationBarType.fixed, // Pastikan tombol di bawah dalam satu baris
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
