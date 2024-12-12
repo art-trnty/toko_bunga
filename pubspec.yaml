@@ -17,6 +17,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
   flutter_lints: ^4.0.0
 
 flutter:
@@ -35,10 +36,9 @@ flutter:
     - assets/logoDana.png
     - assets/logoOVO.png
     - assets/logoShoppeePay.png
-
-  assets:
     - assets/images/toko1.jpg
     - assets/images/toko2.jpg
     - assets/images/toko3.jpg
     - assets/images/toko4.jpg
     - assets/images/toko5.jpg
+
