@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toko_bunga/screens/DaftarTokoScreen.dart';
 import 'package:toko_bunga/screens/HomeScreen.dart';
-import 'package:toko_bunga/screens/Pembayaran.dart';
 import 'package:toko_bunga/screens/SearchScreen.dart';
 import 'package:toko_bunga/screens/SignInScreen.dart';
 
@@ -14,8 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      //home: SearchScreen(),
-      home: HomeScreen(),
+      home: SearchScreen(),
+      //home: HomeScreen(),
      // home: SigninscreenPage(),
     );
   }

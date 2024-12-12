@@ -87,7 +87,7 @@ class HomeContentScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text('Lokasi Anda: Jl. Semarang'),
+        title: Text('Lokasi Anda: Universitas Multi Data Palembang'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -112,11 +112,11 @@ class HomeContentScreen extends StatelessWidget {
                         height: 50,
                         fit: BoxFit.cover,  // Mengatur agar gambar tidak pecah
                       ),
-                      title: Text('Toko Tanaman ${index + 1}'),
+                      title: Text('Toko tanaman ${index + 1}'),
                       subtitle: Row(
                         children: [
                           Icon(Icons.star, color: Colors.yellow, size: 16),
-                          Text('4.${index + 1} (25+)'),
+                          Text('4.${index + 1} (100+)'),
                         ],
                       ),
                       trailing: IconButton(
