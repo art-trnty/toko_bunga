@@ -22,6 +22,19 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+  assets:
+    - assets/nature.jpg
+    - assets/naturee.jpg
+    - assets/houseplant-peperomia.jpg
+    - assets/houseplant-crassula.jpg
+    - assets/houseplant-asplenium.jpg
+    - assets/vitamin-b.jpg
+    - assets/Peperomia Houseplant.png
+    - assets/Peperomia Obtusfolia.png
+    - assets/Notifikasi.jpg
+    - assets/logoDana.png
+    - assets/logoOVO.png
+    - assets/logoShoppeePay.png
 
   assets:
     - assets/images/toko1.jpg
