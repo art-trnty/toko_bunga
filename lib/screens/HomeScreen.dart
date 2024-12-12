@@ -1,4 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:toko_bunga/screens/LoginScreen.dart';
+import 'package:toko_bunga/screens/DaftarTokoScreen.dart';
+import 'package:toko_bunga/screens/SearchScreen.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomeScreen(),
+    );
+  }
+}
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -8,11 +25,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  final List<Widget> _screens = [
-    HomeContent(),
-    Center(child: Text('Search Screen')),
-    Center(child: Text('Toko Screen')),
-    Center(child: Text('Profile Screen')),
+  // Tambahkan widget ke dalam daftar _screens
+  static final List<Widget> _screens = [
+    HomeContentScreen(),
+    SearchScreen(),
+    DaftarTokoScreen(),
+    ProfilScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -24,14 +42,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Tanaman Hias'),
-      ),
       body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,  // Menggunakan currentIndex
+        currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        items: const <BottomNavigationBarItem>[
+        backgroundColor: Colors.green,  // Latar belakang hijau
+        selectedItemColor: Colors.white,  // Ikon yang dipilih menjadi putih
+        unselectedItemColor: Colors.white,  // Ikon yang tidak dipilih menjadi putih
+        type: BottomNavigationBarType.fixed, // Pastikan tombol di bawah dalam satu baris
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -46,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profile',
+            label: 'Profil',
           ),
         ],
       ),
@@ -54,44 +73,109 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class HomeContent extends StatelessWidget {
+class HomeContentScreen extends StatelessWidget {
+  final List<String> tokoImages = [
+    'assets/images/toko1.jpg',
+    'assets/images/toko2.jpg',
+    'assets/images/toko3.jpg',
+    'assets/images/toko4.jpg',
+    'assets/images/toko5.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: TextField(
-            decoration: InputDecoration(
-              hintText: 'Cari Toko tanaman hias terdekat...',
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('Lokasi Anda: Universitas Multi Data Palembang'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 10),
+            Text(
+              'Daftar Toko Tanaman Hias',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-          ),
+            SizedBox(height: 10),
+            Expanded(
+              child: ListView.builder(
+                itemCount: tokoImages.length, // Jumlah gambar
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: ListTile(
+                      leading: Image.asset(
+                        tokoImages[index],  // Gunakan asset path untuk gambar
+                        width: 50,  // Sesuaikan ukuran gambar
+                        height: 50,
+                        fit: BoxFit.cover,  // Mengatur agar gambar tidak pecah
+                      ),
+                      title: Text('Toko tanaman ${index + 1}'),
+                      subtitle: Row(
+                        children: [
+                          Icon(Icons.star, color: Colors.yellow, size: 16),
+                          Text('4.${index + 1} (100+)'),
+                        ],
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(Icons.favorite_border),
+                        onPressed: () {},
+                      ),
+                    ),
+                  );
+                },
+              ),
+            )
+          ],
         ),
-        Expanded(
-          child: ListView(
-            children: [
-              _buildTokoCard('Toko Flora Jaya', 'Jl. Puring Asri Blok C2', '10-15 mins'),
-              _buildTokoCard('Nature\'s Bloom Shop', 'Jl. Pohon Kecil No. 56', '7-10 mins'),
-            ],
-          ),
-        ),
-      ],
+      ),
     );
   }
+}
 
-  Widget _buildTokoCard(String nama, String alamat, String waktu) {
-    return Card(
-        margin: EdgeInsets.all(10),
-        child: ListTile(
-          leading: Icon(Icons.store, color: Colors.green),
-          title: Text(nama),
-          subtitle: Text('$alamat • $waktu'),
-          trailing: Icon(Icons.favorite_border),
-        ),
-        );
-    }
+class SearchScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('Search'),
+      ),
+      body: Center(
+        child: Text('Search Screen'),
+      ),
+    );
+  }
+}
+
+class DaftarTokoScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('Daftar Toko'),
+      ),
+      body: Center(
+        child: Text('Daftar Toko Screen'),
+      ),
+    );
+  }
+}
+
+class ProfilScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('Profil'),
+      ),
+      body: Center(
+        child: Text('Profil Screen'),
+      ),
+    );
+  }
 }
