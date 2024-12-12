@@ -1,83 +1,176 @@
 import 'package:flutter/material.dart';
+import 'package:toko_bunga/screens/LoginScreen.dart';
+import 'package:toko_bunga/screens/DaftarTokoScreen.dart';
+import 'package:toko_bunga/screens/SearchScreen.dart';
 
-import 'LoginScreen.dart';
+void main() {
+  runApp(MyApp());
+}
 
-class HomeScreen extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+
+  // Tambahkan widget ke dalam daftar _screens
+  static final List<Widget> _screens = [
+    HomeContentScreen(),
+    SearchScreen(),
+    DaftarTokoScreen(),
+    ProfilScreen(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _screens[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.store),
+            label: 'Toko',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profil',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HomeContentScreen extends StatelessWidget {
+  final List<String> tokoImages = [
+    'assets/images/toko1.jpg',
+    'assets/images/toko2.jpg',
+    'assets/images/toko3.jpg',
+    'assets/images/toko4.jpg',
+    'assets/images/toko5.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Screen'),
         backgroundColor: Colors.green,
+        title: Text('Lokasi Anda: Jl. Semarang'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 50),
+            SizedBox(height: 10),
             Text(
-              'Selamat datang di aplikasi Toko Bunga!',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
+              'Daftar Toko Tanaman Hias',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 20),
-            Text(
-              'Ini adalah halaman utama setelah Anda berhasil login.',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black54,
-              ),
-            ),
-            const SizedBox(height: 40),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {
-                  // Navigasi ke halaman lain, misalnya halaman produk atau lainnya
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                child: const Text(
-                  'Lihat Produk',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {
-                  // Logout atau navigasi ke halaman login
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
+            SizedBox(height: 10),
+            Expanded(
+              child: ListView.builder(
+                itemCount: tokoImages.length, // Jumlah gambar
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: ListTile(
+                      leading: Image.asset(
+                        tokoImages[index],  // Gunakan asset path untuk gambar
+                        width: 50,  // Sesuaikan ukuran gambar
+                        height: 50,
+                        fit: BoxFit.cover,  // Mengatur agar gambar tidak pecah
+                      ),
+                      title: Text('Toko Tanaman ${index + 1}'),
+                      subtitle: Row(
+                        children: [
+                          Icon(Icons.star, color: Colors.yellow, size: 16),
+                          Text('4.${index + 1} (25+)'),
+                        ],
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(Icons.favorite_border),
+                        onPressed: () {},
+                      ),
+                    ),
                   );
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                child: const Text(
-                  'Keluar',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
               ),
-            ),
+            )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SearchScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('Search'),
+      ),
+      body: Center(
+        child: Text('Search Screen'),
+      ),
+    );
+  }
+}
+
+class DaftarTokoScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('Daftar Toko'),
+      ),
+      body: Center(
+        child: Text('Daftar Toko Screen'),
+      ),
+    );
+  }
+}
+
+class ProfilScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('Profil'),
+      ),
+      body: Center(
+        child: Text('Profil Screen'),
       ),
     );
   }

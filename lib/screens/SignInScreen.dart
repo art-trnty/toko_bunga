@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart'; // Tambahkan import ini
+import 'package:flutter/gestures.dart';
 import 'package:toko_bunga/screens/LoginScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SigninscreenPage extends StatefulWidget {
   @override
@@ -20,15 +21,26 @@ class _SigninscreenPageState extends State<SigninscreenPage> {
     });
   }
 
-  void _register() {
-    String email = emailController.text;
-    String username = usernameController.text;
-    String password = passwordController.text;
-    String confirmPassword = confirmPasswordController.text;
+  Future<void> _saveUserData(String email, String password) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('savedEmail', email);
+    await prefs.setString('savedPassword', password);
+  }
 
-    if (email.isNotEmpty && username.isNotEmpty && password.isNotEmpty && password == confirmPassword) {
-      // Simpan data email dan password, misalnya menggunakan shared preferences
-      // Di sini kita hanya akan menampilkan dialog berhasil
+  void _register() async {
+    String email = emailController.text.trim();
+    String username = usernameController.text.trim();
+    String password = passwordController.text.trim();
+    String confirmPassword = confirmPasswordController.text.trim();
+
+    if (email.isNotEmpty &&
+        username.isNotEmpty &&
+        password.isNotEmpty &&
+        password == confirmPassword) {
+      // Simpan data email dan password
+      await _saveUserData(email, password);
+
+      // Tampilkan dialog sukses
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -50,7 +62,13 @@ class _SigninscreenPageState extends State<SigninscreenPage> {
     } else {
       // Tampilkan pesan error jika ada input yang salah
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Silakan periksa kembali data yang Anda masukkan')),
+        SnackBar(
+          content: Text(
+            password != confirmPassword
+                ? 'Kata sandi tidak cocok.'
+                : 'Silakan periksa kembali data yang Anda masukkan.',
+          ),
+        ),
       );
     }
   }
@@ -125,7 +143,9 @@ class _SigninscreenPageState extends State<SigninscreenPage> {
                 hintText: "Masukkan kata sandimu",
                 prefixIcon: Icon(Icons.lock),
                 suffixIcon: IconButton(
-                  icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                  icon: Icon(_isPasswordVisible
+                      ? Icons.visibility
+                      : Icons.visibility_off),
                   onPressed: _togglePasswordVisibility,
                 ),
                 border: UnderlineInputBorder(),
@@ -140,7 +160,9 @@ class _SigninscreenPageState extends State<SigninscreenPage> {
                 hintText: "Konfirmasi kata sandimu",
                 prefixIcon: Icon(Icons.lock),
                 suffixIcon: IconButton(
-                  icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                  icon: Icon(_isPasswordVisible
+                      ? Icons.visibility
+                      : Icons.visibility_off),
                   onPressed: _togglePasswordVisibility,
                 ),
                 border: UnderlineInputBorder(),
