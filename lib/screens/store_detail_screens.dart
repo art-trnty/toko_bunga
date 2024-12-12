@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:toko_bunga/data/product_data.dart';
 import 'package:toko_bunga/screens/HomeScreen.dart';
-import 'package:toko_bunga/screens/ProfileScreen.dart';
+import 'package:toko_bunga/screens/LoginScreen.dart';
+import 'package:toko_bunga/screens/DaftarTokoScreen.dart';
 import 'package:toko_bunga/screens/SearchScreen.dart';
-import 'package:toko_bunga/screens/StoreScreen.dart';
 import 'package:toko_bunga/widgets/store_header.dart';
 import 'package:toko_bunga/widgets/product_card.dart';
 
@@ -24,8 +24,8 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
     SearchScreen(),
-    StoreScreen(),
-    ProfileScreen(),
+    DaftarTokoScreen(),
+    ProfilScreen(),
   ];
 
   void _navigateTo(int index) {
