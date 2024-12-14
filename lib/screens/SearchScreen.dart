@@ -6,13 +6,11 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  get search => null;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: search.SearchScreen(),
+      home: SearchScreen(),
     );
   }
 }
@@ -25,6 +23,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   List<Bunga> _filteredBungaList = bungaList;
   final TextEditingController _searchController = TextEditingController();
+  Map<int, int> _cart = {}; // Map to store quantity of each item in the cart
 
   void _updateSearchQuery(String query) {
     setState(() {
@@ -34,6 +33,29 @@ class _SearchScreenState extends State<SearchScreen> {
           bunga.location.toLowerCase().contains(query.toLowerCase()))
           .toList();
     });
+  }
+
+  void _increaseQuantity(int index) {
+    setState(() {
+      _cart[index] = (_cart[index] ?? 0) + 1;
+    });
+  }
+
+  void _decreaseQuantity(int index) {
+    setState(() {
+      if (_cart[index] != null && _cart[index]! > 0) {
+        _cart[index] = _cart[index]! - 1;
+      }
+    });
+  }
+
+  int _calculateTotalPrice() {
+    int total = 0;
+    _cart.forEach((index, quantity) {
+      final bunga = bungaList[index];
+      total += bunga.harga * quantity;
+    });
+    return total;
   }
 
   @override
@@ -70,6 +92,7 @@ class _SearchScreenState extends State<SearchScreen> {
               itemCount: _filteredBungaList.length,
               itemBuilder: (context, index) {
                 final bunga = _filteredBungaList[index];
+                final quantity = _cart[index] ?? 0; // Get the current quantity
                 return Card(
                   margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Row(
@@ -99,6 +122,22 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                             const SizedBox(height: 4),
                             Text(bunga.location),
+                            const SizedBox(height: 4),
+                            Text("Harga: Rp ${bunga.harga}"),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                IconButton(
+                                  icon: Icon(Icons.remove),
+                                  onPressed: () => _decreaseQuantity(index),
+                                ),
+                                Text(quantity.toString()),
+                                IconButton(
+                                  icon: Icon(Icons.add),
+                                  onPressed: () => _increaseQuantity(index),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -107,7 +146,25 @@ class _SearchScreenState extends State<SearchScreen> {
                 );
               },
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Total Harga: Rp ${_calculateTotalPrice()}",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Add functionality for checkout if needed
+                  },
+                  child: Text("Checkout"),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -118,34 +175,49 @@ class Bunga {
   final String name;
   final String location;
   final String imageAsset;
+  final int harga;
 
-  Bunga({required this.name, required this.location, required this.imageAsset});
+  Bunga(
+      {required this.name,
+        required this.location,
+        required this.imageAsset,
+        required this.harga});
 }
 
 List<Bunga> bungaList = [
-  Bunga(name: "Nature", location: "Palembang", imageAsset: "assets/nature.jpg"),
+  Bunga(
+      name: "Nature",
+      location: "Palembang",
+      imageAsset: "assets/nature.jpg",
+      harga: 115000),
   Bunga(
       name: "Houseplant Peperomia",
       location: "Palembang",
-      imageAsset: "assets/houseplant-peperomia.jpg"),
+      imageAsset: "assets/houseplant-peperomia.jpg",
+      harga: 100000),
   Bunga(
       name: "Houseplant Crassula",
       location: "Palembang",
-      imageAsset: "assets/houseplant-crassula.jpg"),
+      imageAsset: "assets/houseplant-crassula.jpg",
+      harga: 120000),
   Bunga(
       name: "Houseplant Asplenium",
       location: "Palembang",
-      imageAsset: "assets/houseplant-asplenium.jpg"),
+      imageAsset: "assets/houseplant-asplenium.jpg",
+      harga: 130000),
   Bunga(
       name: "Vitamin B",
       location: "Palembang",
-      imageAsset: "assets/vitamin-b.jpg"),
+      imageAsset: "assets/vitamin-b.jpg",
+      harga: 85000),
   Bunga(
       name: "Peperomia Houseplant",
       location: "Palembang",
-      imageAsset: "assets/Peperomia Houseplant.png"),
+      imageAsset: "assets/Peperomia Houseplant.png",
+      harga: 135000),
   Bunga(
       name: "Peperomia Obtusfolia",
       location: "Palembang",
-      imageAsset: "assets/Peperomia Obtusfolia.png")
+      imageAsset: "assets/Peperomia Obtusfolia.png",
+      harga: 140000)
 ];
