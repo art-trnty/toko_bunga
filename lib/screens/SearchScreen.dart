@@ -2,16 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:toko_bunga/screens/HomeScreen.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: SearchScreen(),
-    ),
-  );
+    );
+  }
 }
 
 class SearchScreen extends StatefulWidget {
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  _SearchScreenState createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> {
