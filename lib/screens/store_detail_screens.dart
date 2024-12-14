@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:toko_bunga/data/product_data.dart';
+import 'package:toko_bunga/screens/HomeScreen.dart';
+import 'package:toko_bunga/screens/LoginScreen.dart';
+import 'package:toko_bunga/screens/DaftarTokoScreen.dart';
+import 'package:toko_bunga/screens/SearchScreen.dart';
 import 'package:toko_bunga/widgets/store_header.dart';
 import 'package:toko_bunga/widgets/product_card.dart';
 
@@ -15,6 +19,20 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
     setState(() {
       isFavorite = !isFavorite;
     });
+  }
+
+  final List<Widget> _screens = [
+    HomeScreen(),
+    SearchScreen(),
+    DaftarTokoScreen(),
+    ProfilScreen(),
+  ];
+
+  void _navigateTo(int index) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => _screens[index]),
+    );
   }
 
   @override
@@ -89,6 +107,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.green,
           unselectedItemColor: Colors.grey,
+          onTap: _navigateTo,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
