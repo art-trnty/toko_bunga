@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toko_bunga/data/cart_data.dart';
+import 'package:toko_bunga/screens/Pembayaran_Screen.dart';
 import 'package:toko_bunga/widgets/cart_item.dart';
 import 'package:toko_bunga/widgets/price_summary.dart';
 
@@ -8,7 +9,6 @@ class CartScreen extends StatefulWidget {
   _CartScreenState createState() => _CartScreenState();
 }
 
-//TODO 1 : Menambahkan tombol remove item
 class _CartScreenState extends State<CartScreen> {
   void removeItem(int index) {
     setState(() {
@@ -16,14 +16,11 @@ class _CartScreenState extends State<CartScreen> {
     });
   }
 
-  //TODO 2 : Menambahkan tombol select item
   void toggleSelection(int index) {
     setState(() {
       cartItems[index].isSelected = !cartItems[index].isSelected;
     });
   }
-
-  //TODO 3 : Menambahkan tombol tambah item yang dibeli
 
   void increaseQuantity(int index) {
     setState(() {
@@ -31,7 +28,6 @@ class _CartScreenState extends State<CartScreen> {
     });
   }
 
-  //TODO 4 : Menambahkan tombol mengurangkan item yang dibeli
   void decreaseQuantity(int index) {
     setState(() {
       if (cartItems[index].quantity > 1) {
@@ -42,7 +38,6 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //TODO 5 : Membuat desain halaman keranjang
     return Scaffold(
       appBar: AppBar(
         title: Text("Keranjang", style: TextStyle(color: Colors.black)),
@@ -91,7 +86,10 @@ class _CartScreenState extends State<CartScreen> {
         padding: const EdgeInsets.all(16.0),
         child: ElevatedButton(
           onPressed: () {
-            // Handle checkout action
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => PembayaranScreen()),
+            );
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.green,
