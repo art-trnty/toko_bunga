@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:toko_bunga/screens/DaftarTokoScreen.dart';
+import 'package:toko_bunga/screens/HomeScreen.dart' as home;
 import 'package:toko_bunga/screens/HomeScreen.dart';
-import 'package:toko_bunga/screens/SearchScreen.dart';
+import 'package:toko_bunga/screens/SearchScreen.dart' as search;
 import 'package:toko_bunga/screens/SignInScreen.dart';
 import 'package:toko_bunga/screens/cart_screens.dart';
 import 'package:toko_bunga/screens/store_detail_screens.dart';
@@ -17,13 +18,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SearchScreen(),
+      home: search.SearchScreen(),
       //home: HomeScreen(),
-     // home: SigninscreenPage(),
-      //home: CartScreen(),
+      //home: SigninscreenPage(),
+     // home: CartScreen(),
      // home: StoreDetailScreen(),
-      // home : NotifikasiPembayaran(),
-      home: PembayaranScreen(),
+     // home : NotifikasiPembayaran(),
+     // home: PembayaranScreen(),
     );
   }
 }
