@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     HomeContentScreen(),
     SearchScreen(),
     //DaftarTokoScreen(),
-    //ProfilScreen(),
+    //ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {

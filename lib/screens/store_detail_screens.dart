@@ -25,7 +25,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
     HomeScreen(),
     SearchScreen(),
     DaftarTokoScreen(),
-    ProfilScreen(),
+    ProfileScreen(),
   ];
 
   void _navigateTo(int index) {
