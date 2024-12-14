@@ -18,12 +18,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SearchScreen(),
-      //home: HomeScreen(),
-     // home: SigninscreenPage(),
-      //home: CartScreen(),
+     //home: HomeScreen(),
+      //home: SigninscreenPage(),
+     // home: CartScreen(),
      // home: StoreDetailScreen(),
-      // home : NotifikasiPembayaran(),
-      home: PembayaranScreen(),
+     // home : NotifikasiPembayaran(),
+     // home: PembayaranScreen(),
     );
   }
 }
