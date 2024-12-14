@@ -28,9 +28,9 @@ class _HomeScreenState extends State<HomeScreen> {
   // Tambahkan widget ke dalam daftar _screens
   static final List<Widget> _screens = [
     HomeContentScreen(),
-    //SearchScreen(),
-    DaftarTokoScreen(),
-    ProfilScreen(),
+    SearchScreen(),
+    //DaftarTokoScreen(),
+    //ProfilScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -88,6 +88,16 @@ class HomeContentScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: Text('Lokasi Anda: Universitas Multi Data Palembang'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              // Arahkan langsung ke tab SearchScreen
+              (context.findAncestorStateOfType<_HomeScreenState>())
+                  ?._onItemTapped(1);
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -110,7 +120,6 @@ class HomeContentScreen extends StatelessWidget {
                         tokoImages[index],  // Gunakan asset path untuk gambar
                         width: 50,  // Sesuaikan ukuran gambar
                         height: 50,
-                        fit: BoxFit.cover,  // Mengatur agar gambar tidak pecah
                       ),
                       title: Text('Toko tanaman ${index + 1}'),
                       subtitle: Row(
@@ -130,51 +139,6 @@ class HomeContentScreen extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class SearchScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text('Search'),
-      ),
-      body: Center(
-        child: Text('Search Screen'),
-      ),
-    );
-  }
-}
-
-class DaftarTokoScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text('Daftar Toko'),
-      ),
-      body: Center(
-        child: Text('Daftar Toko Screen'),
-      ),
-    );
-  }
-}
-
-class ProfilScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text('Profil'),
-      ),
-      body: Center(
-        child: Text('Profil Screen'),
       ),
     );
   }
