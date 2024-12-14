@@ -19,9 +19,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      //home: SearchScreen(),
+      home: HomeScreen(),
+      //home: SigninscreenPage(),
+      //home: CartScreen(),
+     // home: StoreDetailScreen(),
+      // home : NotifikasiPembayaran(),
+      //home: PembayaranScreen(),
       //home: search.SearchScreen(),
       //home: HomeScreen(),
-      home: ProfileScreen(),
+      //home: ProfileScreen(),
       //home: SigninscreenPage(),
      // home: CartScreen(),
      // home: StoreDetailScreen(),
