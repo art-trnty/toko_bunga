@@ -6,11 +6,13 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  get search => null;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SearchScreen(),
+      home: search.SearchScreen(),
     );
   }
 }

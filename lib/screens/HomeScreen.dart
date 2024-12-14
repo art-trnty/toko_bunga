@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // Tambahkan widget ke dalam daftar _screens
   static final List<Widget> _screens = [
     HomeContentScreen(),
-    SearchScreen(),
+    //SearchScreen(),
     DaftarTokoScreen(),
     ProfilScreen(),
   ];
