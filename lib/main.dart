@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toko_bunga/screens/SearchScreen.dart';
+//import 'package:toko_bunga/screens/SearchScreen.dart';
 import 'package:toko_bunga/screens/cart_screens.dart';
 import 'package:toko_bunga/screens/Notifikasi_pembayaran.dart';
 import 'package:toko_bunga/screens/Pembayaran_Screen.dart';
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       //home: CartScreen(),
      // home: StoreDetailScreen(),
-      home: SearchScreen(),
+      //home: SearchScreen(),
 
     );
   }
