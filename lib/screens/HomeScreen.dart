@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toko_bunga/screens/SearchScreen.dart'; // Import SearchScreen
 import 'package:toko_bunga/screens/LoginScreen.dart';
 
 void main() {
@@ -23,10 +24,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  // Tambahkan widget ke dalam daftar _screens
+  // Daftar screens yang bisa dipilih, termasuk SearchScreen
   static final List<Widget> _screens = [
     HomeContentScreen(),
-    //SearchScreen(),
+    SearchScreen(), // Menambahkan SearchScreen ke dalam daftar
+    // TokoScreen(), // Bisa ditambahkan nanti jika ada halaman Toko
+    // ProfilScreen(), // Bisa ditambahkan nanti jika ada halaman Profil
   ];
 
   void _onItemTapped(int index) {
@@ -38,14 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_selectedIndex],
+      body: _screens[_selectedIndex], // Menampilkan halaman sesuai index yang dipilih
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        backgroundColor: Colors.green,  // Latar belakang hijau
-        selectedItemColor: Colors.white,  // Ikon yang dipilih menjadi putih
-        unselectedItemColor: Colors.white,  // Ikon yang tidak dipilih menjadi putih
-        type: BottomNavigationBarType.fixed, // Pastikan tombol di bawah dalam satu baris
+        backgroundColor: Colors.green,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white,
+        type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -84,16 +87,6 @@ class HomeContentScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: Text('Lokasi Anda: Universitas Multi Data Palembang'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              // Arahkan langsung ke tab SearchScreen
-              (context.findAncestorStateOfType<_HomeScreenState>())
-                  ?._onItemTapped(1);
-            },
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -108,13 +101,13 @@ class HomeContentScreen extends StatelessWidget {
             SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
-                itemCount: tokoImages.length, // Jumlah gambar
+                itemCount: tokoImages.length,
                 itemBuilder: (context, index) {
                   return Card(
                     child: ListTile(
                       leading: Image.asset(
-                        tokoImages[index],  // Gunakan asset path untuk gambar
-                        width: 50,  // Sesuaikan ukuran gambar
+                        tokoImages[index],
+                        width: 50,
                         height: 50,
                       ),
                       title: Text('Toko tanaman ${index + 1}'),
@@ -132,7 +125,7 @@ class HomeContentScreen extends StatelessWidget {
                   );
                 },
               ),
-            )
+            ),
           ],
         ),
       ),
