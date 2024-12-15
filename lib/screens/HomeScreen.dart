@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:toko_bunga/screens/LoginScreen.dart';
-import 'package:toko_bunga/screens/DaftarTokoScreen.dart';
-import 'package:toko_bunga/screens/SearchScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,9 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // Tambahkan widget ke dalam daftar _screens
   static final List<Widget> _screens = [
     HomeContentScreen(),
-    SearchScreen(),
-    //DaftarTokoScreen(),
-    //ProfilScreen(),
+    //SearchScreen(),
   ];
 
   void _onItemTapped(int index) {
