@@ -1,19 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toko_bunga/screens/HomeScreen.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SearchScreen(),
-    );
-  }
-}
+import 'package:toko_bunga/screens/Pembayaran_Screen.dart'; 
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -23,8 +9,9 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   List<Bunga> _filteredBungaList = bungaList;
   final TextEditingController _searchController = TextEditingController();
-  Map<int, int> _cart = {}; // Map to store quantity of each item in the cart
+  Map<int, int> _cart = {}; // Untuk menyimpan jumlah item dalam keranjang belanja
 
+  // Fungsi untuk memperbarui pencarian berdasarkan input
   void _updateSearchQuery(String query) {
     setState(() {
       _filteredBungaList = bungaList
@@ -35,12 +22,14 @@ class _SearchScreenState extends State<SearchScreen> {
     });
   }
 
+  // Fungsi untuk menambah jumlah item dalam keranjang
   void _increaseQuantity(int index) {
     setState(() {
       _cart[index] = (_cart[index] ?? 0) + 1;
     });
   }
 
+  // Fungsi untuk mengurangi jumlah item dalam keranjang
   void _decreaseQuantity(int index) {
     setState(() {
       if (_cart[index] != null && _cart[index]! > 0) {
@@ -49,6 +38,7 @@ class _SearchScreenState extends State<SearchScreen> {
     });
   }
 
+  // Fungsi untuk menghitung total harga dari semua item yang ada di keranjang
   int _calculateTotalPrice() {
     int total = 0;
     _cart.forEach((index, quantity) {
@@ -66,6 +56,7 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
       body: Column(
         children: [
+          // Pencarian bunga
           Padding(
             padding: const EdgeInsets.all(16),
             child: Container(
@@ -80,19 +71,19 @@ class _SearchScreenState extends State<SearchScreen> {
                   hintText: "Cari Bunga",
                   prefixIcon: Icon(Icons.search),
                   border: InputBorder.none,
-                  contentPadding:
-                  EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 ),
                 onChanged: _updateSearchQuery,
               ),
             ),
           ),
+          // Daftar bunga yang difilter
           Expanded(
             child: ListView.builder(
               itemCount: _filteredBungaList.length,
               itemBuilder: (context, index) {
                 final bunga = _filteredBungaList[index];
-                final quantity = _cart[index] ?? 0; // Get the current quantity
+                final quantity = _cart[index] ?? 0;
                 return Card(
                   margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Row(
@@ -147,6 +138,7 @@ class _SearchScreenState extends State<SearchScreen> {
               },
             ),
           ),
+          // Total harga dan tombol checkout
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
@@ -158,7 +150,13 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // Add functionality for checkout if needed
+                    // Navigasi ke PembayaranScreen saat tombol checkout ditekan
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PembayaranScreen(),
+                      ),
+                    );
                   },
                   child: Text("Checkout"),
                 ),
@@ -177,11 +175,12 @@ class Bunga {
   final String imageAsset;
   final int harga;
 
-  Bunga(
-      {required this.name,
-        required this.location,
-        required this.imageAsset,
-        required this.harga});
+  Bunga({
+    required this.name,
+    required this.location,
+    required this.imageAsset,
+    required this.harga,
+  });
 }
 
 List<Bunga> bungaList = [
