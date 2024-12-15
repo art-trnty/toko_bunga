@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:toko_bunga/screens/LoginScreen.dart';
-import 'package:toko_bunga/screens/DaftarTokoScreen.dart';
 import 'package:toko_bunga/screens/SearchScreen.dart';
 
 void main() {
