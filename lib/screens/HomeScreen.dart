@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toko_bunga/screens/SearchScreen.dart';
 import 'package:toko_bunga/screens/LoginScreen.dart';
 
 void main() {
@@ -23,29 +24,30 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  // Tambahkan widget ke dalam daftar _screens
+  // Tambahkan SearchScreen ke dalam daftar _screens
   static final List<Widget> _screens = [
-    HomeContentScreen(),
-    //SearchScreen(),
+    HomeContentScreen(),  // Screen pertama: HomeContentScreen
+    // Jangan langsung masukkan SearchScreen di sini
+    // Nanti akan menggunakan Navigator untuk navigasi ke SearchScreen
   ];
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      _selectedIndex = index;  // Memperbarui index layar yang dipilih
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_selectedIndex],
+      body: _screens[_selectedIndex],  // Menampilkan screen sesuai dengan _selectedIndex
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        backgroundColor: Colors.green,  // Latar belakang hijau
-        selectedItemColor: Colors.white,  // Ikon yang dipilih menjadi putih
-        unselectedItemColor: Colors.white,  // Ikon yang tidak dipilih menjadi putih
-        type: BottomNavigationBarType.fixed, // Pastikan tombol di bawah dalam satu baris
+        onTap: _onItemTapped,  // Menangani perubahan tab
+        backgroundColor: Colors.green,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white,
+        type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -88,9 +90,11 @@ class HomeContentScreen extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              // Arahkan langsung ke tab SearchScreen
-              (context.findAncestorStateOfType<_HomeScreenState>())
-                  ?._onItemTapped(1);
+              // Menggunakan Navigator untuk berpindah ke SearchScreen
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SearchScreen()),
+              );
             },
           ),
         ],
@@ -108,7 +112,7 @@ class HomeContentScreen extends StatelessWidget {
             SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
-                itemCount: tokoImages.length, // Jumlah gambar
+                itemCount: tokoImages.length,  // Jumlah gambar
                 itemBuilder: (context, index) {
                   return Card(
                     child: ListTile(
