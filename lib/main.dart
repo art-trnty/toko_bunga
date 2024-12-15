@@ -21,12 +21,15 @@ class MyApp extends StatelessWidget {
       home: HomeScreen(),
       //home: CartScreen(),
      // home: StoreDetailScreen(),
+      // home : NotifikasiPembayaran(),
+      //home: PembayaranScreen(),
+
+
       //home: search.SearchScreen(),
       //home: HomeScreen(),
       //home: ProfileScreen(),
       //home: SigninscreenPage(),
      // home: CartScreen(),
-     // home: StoreDetailScreen(),
     );
   }
 }
