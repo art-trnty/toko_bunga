@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toko_bunga/screens/HomeScreen.dart';
 
 class NotificationScreen extends StatelessWidget {
   @override
@@ -32,7 +33,10 @@ class NotificationScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context); // Menutup halaman Notifikasi
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
               },
               child: Text('Kembali ke Halaman Utama'),
             ),

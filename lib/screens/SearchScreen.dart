@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toko_bunga/screens/Pembayaran_Screen.dart';
+import 'package:toko_bunga/screens/cart_screens.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -9,15 +9,16 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   List<Bunga> _filteredBungaList = bungaList;
   final TextEditingController _searchController = TextEditingController();
-  Map<int, int> _cart = {}; // Untuk menyimpan jumlah item dalam keranjang belanja
+  Map<int, int> _cart =
+      {}; // Untuk menyimpan jumlah item dalam keranjang belanja
 
   // Fungsi untuk memperbarui pencarian berdasarkan input
   void _updateSearchQuery(String query) {
     setState(() {
       _filteredBungaList = bungaList
           .where((bunga) =>
-      bunga.name.toLowerCase().contains(query.toLowerCase()) ||
-          bunga.location.toLowerCase().contains(query.toLowerCase()))
+              bunga.name.toLowerCase().contains(query.toLowerCase()) ||
+              bunga.location.toLowerCase().contains(query.toLowerCase()))
           .toList();
     });
   }
@@ -71,7 +72,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   hintText: "Cari Bunga",
                   prefixIcon: Icon(Icons.search),
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 ),
                 onChanged: _updateSearchQuery,
               ),
@@ -85,7 +87,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 final bunga = _filteredBungaList[index];
                 final quantity = _cart[index] ?? 0;
                 return Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -154,7 +157,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => PembayaranScreen(),
+                        builder: (context) => CartScreen(),
                       ),
                     );
                   },
