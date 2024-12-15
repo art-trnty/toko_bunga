@@ -15,9 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       //home: CartScreen(),
      // home: StoreDetailScreen(),
-      // home : NotifikasiPembayaran(),
       home: SearchScreen(),
-    //  home: PembayaranScreen(),
 
     );
   }
