@@ -18,11 +18,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       //home: SearchScreen(),
-      home: HomeScreen(),
+      //home: HomeScreen(),
       //home: CartScreen(),
      // home: StoreDetailScreen(),
       //home: search.SearchScreen(),
-      //home: HomeScreen(),
+      home: HomeScreen(),
       //home: ProfileScreen(),
       //home: SigninscreenPage(),
      // home: CartScreen(),

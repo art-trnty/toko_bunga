@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:toko_bunga/screens/SearchScreen.dart'; // Import SearchScreen
-import 'package:toko_bunga/screens/LoginScreen.dart';
+import 'package:toko_bunga/screens/SearchScreen.dart';
+import 'package:toko_bunga/screens/ProfileScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,12 +24,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  // Daftar screens yang bisa dipilih, termasuk SearchScreen
   static final List<Widget> _screens = [
     HomeContentScreen(),
-    SearchScreen(), // Menambahkan SearchScreen ke dalam daftar
-    // TokoScreen(), // Bisa ditambahkan nanti jika ada halaman Toko
-    // ProfilScreen(), // Bisa ditambahkan nanti jika ada halaman Profil
+    SearchScreen(),
+    ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -41,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_selectedIndex], // Menampilkan halaman sesuai index yang dipilih
+      body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
@@ -87,6 +85,17 @@ class HomeContentScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: Text('Lokasi Anda: Universitas Multi Data Palembang'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SearchScreen()),
+              );
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -125,7 +134,7 @@ class HomeContentScreen extends StatelessWidget {
                   );
                 },
               ),
-            ),
+            )
           ],
         ),
       ),
