@@ -17,15 +17,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      //home: SearchScreen(),
-      home: HomeScreen(),
+      home: SearchScreen(),
+      //home: HomeScreen(),
       //home: CartScreen(),
      // home: StoreDetailScreen(),
       // home : NotifikasiPembayaran(),
       //home: PembayaranScreen(),
 
 
-      //home: search.SearchScreen(),
       //home: HomeScreen(),
       //home: ProfileScreen(),
       //home: SigninscreenPage(),
