@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:toko_bunga/screens/Notifikasi_pembayaran.dart';
 
 
-class PaymentScreen extends StatefulWidget {
+class PembayaranScreen extends StatefulWidget {
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
 }
 
-class _PaymentScreenState extends State<PaymentScreen> {
+class _PaymentScreenState extends State<PembayaranScreen> {
   String? _selectedPaymentMethod; // Untuk menyimpan metode pembayaran yang dipilih
   double totalAmount = 0; // Contoh jumlah total pembayaran
 

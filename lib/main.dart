@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       //home: CartScreen(),
      // home: StoreDetailScreen(),
       // home : NotifikasiPembayaran(),
-      home: PaymentScreen(),
+      home: PembayaranScreen(),
 
 
     );
