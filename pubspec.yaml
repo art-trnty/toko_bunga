@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  shared_preferences: ^2.1.1
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
@@ -36,4 +36,13 @@ flutter:
     - assets/logoDana.png
     - assets/logoOVO.png
     - assets/logoShoppeePay.png
+    - assets/images/toko1.jpg
+    - assets/images/toko2.jpg
+    - assets/images/toko3.jpg
+    - assets/images/toko4.jpg
+    - assets/images/toko5.jpg
+    - assets/images/profile.jpg
+    - assets/images/toko5.jpg
+    - assets/images/profile.jpg
+
 
