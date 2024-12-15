@@ -17,18 +17,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       //home: SearchScreen(),
       home: HomeScreen(),
-      //home: SigninscreenPage(),
       //home: CartScreen(),
      // home: StoreDetailScreen(),
-      // home : NotifikasiPembayaran(),
-      //home: PembayaranScreen(),
       //home: search.SearchScreen(),
       //home: HomeScreen(),
-      //home: SigninscreenPage(),
      // home: CartScreen(),
      // home: StoreDetailScreen(),
-     // home : NotifikasiPembayaran(),
-     // home: PembayaranScreen(),
     );
   }
 }
