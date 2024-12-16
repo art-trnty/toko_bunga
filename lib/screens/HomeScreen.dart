@@ -100,7 +100,7 @@ class HomeContentScreen extends StatelessWidget {
           children: [
             SizedBox(height: 10),
             Text(
-              'Daftar Toko Tanaman Hias',
+              'Daftar Rekomendasi Toko Tanaman Hias',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
