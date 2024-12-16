@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toko_bunga/screens/Notifikasi_pembayaran.dart';
+import 'package:toko_bunga/screens/cart_screens.dart';
 
 class PembayaranScreen extends StatefulWidget {
   @override
@@ -8,7 +9,7 @@ class PembayaranScreen extends StatefulWidget {
 
 class _PaymentScreenState extends State<PembayaranScreen> {
   String? _selectedPaymentMethod;
-  double totalAmount = 415000;
+  double totalAmount = 255000;
 
   final TextEditingController _AlamatController = TextEditingController();
 

@@ -11,9 +11,9 @@ List<CartItemData> cartItems = [
   ),
   CartItemData(
     imageUrl: "assets/Peperomia Obtusfolia.png",
-    title: "Peperomia",
+    title: "Peperomia Obtusfolia",
     size: "M",
-    price: 300000,
+    price: 140000,
     quantity: 1,
     isSelected: true,
   ),
