@@ -57,10 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.store),
-            label: 'Toko',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profil',
           ),

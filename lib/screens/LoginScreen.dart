@@ -30,8 +30,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   // Simulasi data login (data ini bisa diganti dengan database atau shared preferences)
-  final String savedEmail = 'user';
-  final String savedPassword = 'password123';
+  final String savedEmail = 'user@gmail.com';
+  final String savedPassword = 'user123';
 
   void _login() {
     if (_formKey.currentState!.validate()) {

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:toko_bunga/screens/Notifikasi_pembayaran.dart';
 
-
 class PembayaranScreen extends StatefulWidget {
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
 }
 
 class _PaymentScreenState extends State<PembayaranScreen> {
-  String? _selectedPaymentMethod; // Untuk menyimpan metode pembayaran yang dipilih
-  double totalAmount = 0; // Contoh jumlah total pembayaran
+  String? _selectedPaymentMethod;
+  double totalAmount = 0;
+
+  final TextEditingController _AlamatController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +23,21 @@ class _PaymentScreenState extends State<PembayaranScreen> {
         children: [
           // Informasi pengiriman
           Card(
-            child: ListTile(
-              title: Text('Mayden Uchiha'),
-              subtitle: Text('mayden123@gmail.com'),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextField(
+                    controller: _AlamatController,
+                    decoration: InputDecoration(
+                      labelText: 'Alamat',
+                      hintText: 'Alamat',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
 
@@ -121,7 +134,22 @@ class _PaymentScreenState extends State<PembayaranScreen> {
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: ElevatedButton(
               onPressed: () {
-                if (_selectedPaymentMethod == null) {
+                if (_AlamatController.text.isEmpty) {
+                  // Tampilkan pesan error jika nama atau email belum diisi
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text('Informasi Pengiriman'),
+                      content: Text('Silakan isi nama dan email Anda.'),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: Text('OK'),
+                        ),
+                      ],
+                    ),
+                  );
+                } else if (_selectedPaymentMethod == null) {
                   // Tampilkan pesan error jika metode pembayaran belum dipilih
                   showDialog(
                     context: context,
