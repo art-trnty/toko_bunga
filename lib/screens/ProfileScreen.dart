@@ -10,10 +10,10 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool isSignedIn = true;
-  String fullName = "John Doe";
+  String fullName = "User";
   String userName = "johndoe";
   int favoriteCandiCount = 5;
-  String address = "123 Main St, Springfield, USA"; // Alamat yang ditambahkan
+  String address = "Universitas Multi Data Palembang"; // Alamat yang ditambahkan
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        'Software Developer',
+                        'Pelangan',
                         style: TextStyle(fontSize: 18, color: Colors.grey),
                       ),
                       SizedBox(height: 20),
@@ -86,14 +86,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         margin: EdgeInsets.symmetric(vertical: 10),
                         child: ListTile(
                           leading: Icon(Icons.email),
-                          title: Text('johndoe@example.com'),
+                          title: Text('User@gmail.com'),
                         ),
                       ),
                       Card(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         child: ListTile(
                           leading: Icon(Icons.phone),
-                          title: Text('0819 7654 0988'),
+                          title: Text('+6289 7654 0988'),
                         ),
                       ),
                       // Alamat Info

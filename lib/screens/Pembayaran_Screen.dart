@@ -8,7 +8,7 @@ class PembayaranScreen extends StatefulWidget {
 
 class _PaymentScreenState extends State<PembayaranScreen> {
   String? _selectedPaymentMethod;
-  double totalAmount = 0;
+  double totalAmount = 415000;
 
   final TextEditingController _AlamatController = TextEditingController();
 
