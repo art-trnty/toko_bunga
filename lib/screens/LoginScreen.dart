@@ -87,7 +87,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ..onTap = () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => SigninscreenPage()),
+                          MaterialPageRoute(
+                              builder: (context) => SigninscreenPage()),
                         );
                       },
                   ),
@@ -102,13 +103,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextFormField(
                     controller: emailController,
                     decoration: InputDecoration(
-                      labelText: 'Email',
+                      labelText: 'Username',
                       prefixIcon: Icon(Icons.email),
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Harap masukkan email';
+                        return 'Harap masukkan Username';
                       }
                       return null;
                     },
@@ -143,7 +144,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       child: const Text(
                         "Masuk",
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
