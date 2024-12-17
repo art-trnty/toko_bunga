@@ -114,6 +114,25 @@ class _PaymentScreenState extends State<PembayaranScreen> {
                     });
                   },
                 ),
+
+                // COD
+                RadioListTile<String>(
+                  title: Row(
+                    children: [
+                      Icon(Icons.delivery_dining, size: 40),
+                      SizedBox(width: 10),
+                      Text('Cash On Delivery (COD)'),
+                    ],
+                  ),
+                  value: 'COD',
+                  groupValue: _selectedPaymentMethod,
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedPaymentMethod = value;
+                    });
+                  },
+                ),
+
                 Divider(), // Add divider for cleaner UI
               ],
             ),
@@ -136,7 +155,7 @@ class _PaymentScreenState extends State<PembayaranScreen> {
             child: ElevatedButton(
               onPressed: () {
                 if (_AlamatController.text.isEmpty) {
-                  // Tampilkan pesan error jika nama atau email belum diisi
+                  // Tampilkan pesan error jika alamat belum diisi
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
@@ -166,14 +185,27 @@ class _PaymentScreenState extends State<PembayaranScreen> {
                     ),
                   );
                 } else {
-                  // Lakukan proses pembayaran dan navigasi ke NotificationScreen
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => NotificationScreen()),
-                  );
+                  // Proses pembayaran
+                  if (_selectedPaymentMethod == 'OVO' || _selectedPaymentMethod == 'ShopeePay' || _selectedPaymentMethod == 'Dana') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => NotificationScreen()),
+                    );
+                  } else if (_selectedPaymentMethod == 'COD') {
+                    // Navigasi ke notifikasi dengan pesan COD
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NotificationScreen(
+                          message : 'Pesanan Anda akan dibayar dengan COD. Harap siapkan uang tunai saat pesanan tiba.',
+                        ),
+                      ),
+                    );
+                  }
                 }
               },
-              child: Text('Bayar Sekarang'),
+
+    child: Text('Bayar Sekarang'),
             ),
           ),
         ],
@@ -181,3 +213,5 @@ class _PaymentScreenState extends State<PembayaranScreen> {
     );
   }
 }
+
+

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:toko_bunga/screens/HomeScreen.dart';
 
 class NotificationScreen extends StatelessWidget {
+  final String? message; // Tambahkan parameter message
+
+  NotificationScreen({this.message}); // Konstruktor dengan parameter opsional
   @override
   Widget build(BuildContext context) {
     return Scaffold(
