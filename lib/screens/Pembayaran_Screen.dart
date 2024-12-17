@@ -141,7 +141,7 @@ class _PaymentScreenState extends State<PembayaranScreen> {
                     context: context,
                     builder: (context) => AlertDialog(
                       title: Text('Informasi Pengiriman'),
-                      content: Text('Silakan isi nama dan email Anda.'),
+                      content: Text('Silakan isi Alamat Anda.'),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(context),

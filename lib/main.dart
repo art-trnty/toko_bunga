@@ -23,8 +23,9 @@ class MyApp extends StatelessWidget {
      // home: StoreDetailScreen(),
       //home: search.SearchScreen(),
       //home: ProfileScreen(),
-      home: SigninscreenPage(),
+     // home: SigninscreenPage(),
      // home: CartScreen(),
+      home: PembayaranScreen(),
     );
   }
 }
