@@ -66,7 +66,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class HomeContentScreen extends StatelessWidget {
+class HomeContentScreen extends StatefulWidget {
+  @override
+  _HomeContentScreenState createState() => _HomeContentScreenState();
+}
+
+class _HomeContentScreenState extends State<HomeContentScreen> {
   final List<String> tokoImages = [
     'assets/images/toko1.jpg',
     'assets/images/toko2.jpg',
@@ -74,6 +79,18 @@ class HomeContentScreen extends StatelessWidget {
     'assets/images/toko4.jpg',
     'assets/images/toko5.jpg',
   ];
+
+  // List untuk melacak status favorit masing-masing toko
+  List<bool> isFavorite = List.generate(5, (index) => false);
+
+  void _navigateToDetail(String image, String title, String subtitle) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailScreen(image: image, title: title, subtitle: subtitle),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,31 +125,130 @@ class HomeContentScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: tokoImages.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    child: ListTile(
-                      leading: Image.asset(
+                  return GestureDetector(
+                    onTap: () {
+                      _navigateToDetail(
                         tokoImages[index],
-                        width: 50,
-                        height: 50,
-                      ),
-                      title: Text('Toko tanaman ${index + 1}'),
-                      subtitle: Row(
-                        children: [
-                          Icon(Icons.star, color: Colors.yellow, size: 16),
-                          Text('4.${index + 1} (100+)'),
-                        ],
-                      ),
-                      trailing: IconButton(
-                        icon: Icon(Icons.favorite_border),
-                        onPressed: () {},
+                        'Toko tanaman ${index + 1}',
+                        'Rating: 4.${index + 1} (100+)',
+                      );
+                    },
+                    child: Card(
+                      child: ListTile(
+                        leading: Image.asset(
+                          tokoImages[index],
+                          width: 50,
+                          height: 50,
+                        ),
+                        title: Text('Toko tanaman ${index + 1}'),
+                        subtitle: Row(
+                          children: [
+                            Icon(Icons.star, color: Colors.yellow, size: 16),
+                            Text('4.${index + 1} (100+)'),
+                          ],
+                        ),
+                        trailing: IconButton(
+                          icon: Icon(
+                            isFavorite[index] ? Icons.favorite : Icons.favorite_border,
+                            color: isFavorite[index] ? Colors.red : null, // Merah jika disukai
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              isFavorite[index] = !isFavorite[index]; // Toggle status favorit
+                            });
+                          },
+                        ),
                       ),
                     ),
                   );
                 },
               ),
-            )
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class DetailScreen extends StatelessWidget {
+  final String image;
+  final String title;
+  final String subtitle;
+
+  DetailScreen({required this.image, required this.title, required this.subtitle});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text(title),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Image.asset(
+                image,
+                width: 200,
+                height: 200,
+              ),
+            ),
+            SizedBox(height: 20),
+            Text(
+              title,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Text(
+              subtitle,
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Detail Produk: ',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Produk yang direkomendasikan ini memiliki kualitas tinggi dan telah banyak dibeli oleh pelanggan. Harga bersaing dan berbagai promo menarik tersedia.',
+              style: TextStyle(fontSize: 14),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SearchScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('Search'),
+      ),
+      body: Center(
+        child: Text('Search Screen'),
+      ),
+    );
+  }
+}
+
+class ProfileScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('Profile'),
+      ),
+      body: Center(
+        child: Text('Profile Screen'),
       ),
     );
   }

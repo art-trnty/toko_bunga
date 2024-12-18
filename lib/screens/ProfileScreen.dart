@@ -109,8 +109,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       // Edit Profile Button
                       ElevatedButton(
                         onPressed: () {
-                          // Handle Edit Profile functionality
-                          print('Edit Profile clicked');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => EditProfileScreen()),
+                          );
                         },
                         child: Text('Edit Profile'),
                       ),
@@ -121,6 +123,71 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class EditProfileScreen extends StatefulWidget {
+  const EditProfileScreen({super.key});
+
+  @override
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Edit Profile'),
+        backgroundColor: Colors.deepPurple,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextField(
+              controller: _emailController,
+              decoration: InputDecoration(
+                labelText: 'ganti Email',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20),
+            TextField(
+              controller: _passwordController,
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'ganti Password',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 30),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  print('Email: ${_emailController.text}');
+                  print('Password: ${_passwordController.text}');
+                  Navigator.pop(context);
+                },
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
+                child: Text('Save'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
