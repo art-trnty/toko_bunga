@@ -13,6 +13,14 @@ class _PaymentScreenState extends State<PembayaranScreen> {
 
   final TextEditingController _AlamatController = TextEditingController();
 
+  String _paymentCode = '';
+
+  void _generatePaymentCode(String method) {
+    setState(() {
+      _paymentCode = method.substring(0, 3).toUpperCase() + DateTime.now().millisecondsSinceEpoch.toString().substring(8);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,73 +54,125 @@ class _PaymentScreenState extends State<PembayaranScreen> {
           Card(
             child: Column(
               children: [
-                // OVO
-                RadioListTile<String>(
-                  title: Row(
-                    children: [
-                      Image.asset(
-                        'assets/logoOVO.png',
-                        width: 40,
-                        height: 40,
+                // E-Wallet ExpansionTile
+                ExpansionTile(
+                  leading: Icon(Icons.account_balance_wallet, size: 40),
+                  title: Text('E-Wallet'),
+                  children: [
+                    // OVO
+                    RadioListTile<String>(
+                      title: Row(
+                        children: [
+                          Image.asset(
+                            'assets/logoOVO.png',
+                            width: 40,
+                            height: 40,
+                          ),
+                          SizedBox(width: 10),
+                          Text('OVO'),
+                        ],
                       ),
-                      SizedBox(width: 10),
-                      Text('OVO'),
-                    ],
-                  ),
-                  subtitle: Text('0812 1234 1233'),
-                  value: 'OVO',
-                  groupValue: _selectedPaymentMethod,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedPaymentMethod = value;
-                    });
-                  },
+                      value: 'OVO',
+                      groupValue: _selectedPaymentMethod,
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedPaymentMethod = value;
+                          _generatePaymentCode(value!);
+                        });
+                      },
+                    ),
+
+                    // ShopeePay
+                    RadioListTile<String>(
+                      title: Row(
+                        children: [
+                          Image.asset(
+                            'assets/logoShoppeePay.png',
+                            width: 40,
+                            height: 40,
+                          ),
+                          SizedBox(width: 10),
+                          Text('ShopeePay'),
+                        ],
+                      ),
+                      value: 'ShopeePay',
+                      groupValue: _selectedPaymentMethod,
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedPaymentMethod = value;
+                          _generatePaymentCode(value!);
+                        });
+                      },
+                    ),
+
+                    // Dana
+                    RadioListTile<String>(
+                      title: Row(
+                        children: [
+                          Image.asset(
+                            'assets/logoDana.png',
+                            width: 40,
+                            height: 40,
+                          ),
+                          SizedBox(width: 10),
+                          Text('Dana'),
+                        ],
+                      ),
+                      value: 'Dana',
+                      groupValue: _selectedPaymentMethod,
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedPaymentMethod = value;
+                          _generatePaymentCode(value!);
+                        });
+                      },
+                    ),
+                  ],
                 ),
 
-                // ShopeePay
-                RadioListTile<String>(
-                  title: Row(
-                    children: [
-                      Image.asset(
-                        'assets/logoShoppeePay.png',
-                        width: 40,
-                        height: 40,
+                // Transfer Bank ExpansionTile
+                ExpansionTile(
+                  leading: Icon(Icons.account_balance, size: 40),
+                  title: Text('Transfer Bank'),
+                  children: [
+                    // BCA
+                    RadioListTile<String>(
+                      title: Row(
+                        children: [
+                          Icon(Icons.account_balance, size: 30),
+                          SizedBox(width: 10),
+                          Text('BCA'),
+                        ],
                       ),
-                      SizedBox(width: 10),
-                      Text('ShopeePay'),
-                    ],
-                  ),
-                  subtitle: Text('0812 1234 1233'),
-                  value: 'ShopeePay',
-                  groupValue: _selectedPaymentMethod,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedPaymentMethod = value;
-                    });
-                  },
-                ),
+                      value: 'BCA',
+                      groupValue: _selectedPaymentMethod,
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedPaymentMethod = value;
+                          _generatePaymentCode(value!);
+                        });
+                      },
+                    ),
 
-                // Dana
-                RadioListTile<String>(
-                  title: Row(
-                    children: [
-                      Image.asset(
-                        'assets/logoDana.png',
-                        width: 40,
-                        height: 40,
+                    // Mandiri
+                    RadioListTile<String>(
+                      title: Row(
+                        children: [
+                          Icon(Icons.account_balance, size: 30),
+                          SizedBox(width: 10),
+                          Text('Mandiri'),
+                        ],
                       ),
-                      SizedBox(width: 10),
-                      Text('Dana'),
-                    ],
-                  ),
-                  subtitle: Text('0812 5678 1233'),
-                  value: 'Dana',
-                  groupValue: _selectedPaymentMethod,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedPaymentMethod = value;
-                    });
-                  },
+                      value: 'Mandiri',
+                      groupValue: _selectedPaymentMethod,
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedPaymentMethod = value;
+                          _generatePaymentCode(value!);
+                        });
+                      },
+                    ),
+                  ],
                 ),
 
                 // COD
@@ -129,6 +189,7 @@ class _PaymentScreenState extends State<PembayaranScreen> {
                   onChanged: (value) {
                     setState(() {
                       _selectedPaymentMethod = value;
+                      _paymentCode = '';
                     });
                   },
                 ),
@@ -137,6 +198,18 @@ class _PaymentScreenState extends State<PembayaranScreen> {
               ],
             ),
           ),
+
+          // Tampilkan kode pembayaran jika tersedia
+          if (_paymentCode.isNotEmpty)
+            Card(
+              child: ListTile(
+                title: Text('Kode Pembayaran'),
+                subtitle: Text(
+                  _paymentCode,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
 
           // Total pembayaran
           Card(
@@ -186,26 +259,28 @@ class _PaymentScreenState extends State<PembayaranScreen> {
                   );
                 } else {
                   // Proses pembayaran
-                  if (_selectedPaymentMethod == 'OVO' || _selectedPaymentMethod == 'ShopeePay' || _selectedPaymentMethod == 'Dana') {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => NotificationScreen()),
-                    );
-                  } else if (_selectedPaymentMethod == 'COD') {
-                    // Navigasi ke notifikasi dengan pesan COD
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => NotificationScreen(
-                          message : 'Pesanan Anda akan dibayar dengan COD. Harap siapkan uang tunai saat pesanan tiba.',
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text('Pembayaran Berhasil'),
+                      content: Text('Pembayaran Anda dengan metode $_selectedPaymentMethod telah berhasil.'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => NotificationScreen()),
+                            );
+                          },
+                          child: Text('OK'),
                         ),
-                      ),
-                    );
-                  }
+                      ],
+                    ),
+                  );
                 }
               },
-
-    child: Text('Bayar Sekarang'),
+              child: Text('Bayar Sekarang'),
             ),
           ),
         ],
@@ -213,5 +288,3 @@ class _PaymentScreenState extends State<PembayaranScreen> {
     );
   }
 }
-
-
