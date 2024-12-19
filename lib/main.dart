@@ -17,15 +17,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      //home: SearchScreen(),
+  //    home: SearchScreen(),
       home: HomeScreen(),
       //home: CartScreen(),
      // home: StoreDetailScreen(),
       //home: search.SearchScreen(),
-      //home: ProfileScreen(),
+     // home: ProfileScreen(),
      // home: SigninscreenPage(),
      // home: CartScreen(),
-     // home: PembayaranScreen(),
+      // home: PembayaranScreen(),
     );
   }
 }

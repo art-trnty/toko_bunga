@@ -223,33 +223,3 @@ class DetailScreen extends StatelessWidget {
     );
   }
 }
-
-class SearchScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text('Search'),
-      ),
-      body: Center(
-        child: Text('Search Screen'),
-      ),
-    );
-  }
-}
-
-class ProfileScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text('Profile'),
-      ),
-      body: Center(
-        child: Text('Profile Screen'),
-      ),
-    );
-  }
-}

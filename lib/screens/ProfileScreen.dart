@@ -87,6 +87,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: ListTile(
                           leading: Icon(Icons.email),
                           title: Text('User@gmail.com'),
+                          trailing: IconButton(
+                            icon: Icon(Icons.edit),
+                            onPressed: () {
+                              print('Edit Email');
+                            },
+                          ),
                         ),
                       ),
                       Card(
@@ -94,6 +100,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: ListTile(
                           leading: Icon(Icons.phone),
                           title: Text('+6289 7654 0988'),
+                          trailing: IconButton(
+                            icon: Icon(Icons.edit),
+                            onPressed: () {
+                              print('Edit Phone');
+                            },
+                          ),
                         ),
                       ),
                       // Alamat Info
@@ -102,6 +114,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: ListTile(
                           leading: Icon(Icons.home),
                           title: Text(address), // Menampilkan alamat
+                          trailing: IconButton(
+                            icon: Icon(Icons.edit),
+                            onPressed: () {
+                              print('Edit Address');
+                            },
+                          ),
                         ),
                       ),
                       SizedBox(height: 20),
@@ -161,7 +179,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
-                labelText: 'ganti Email',
+                labelText: 'Edit Email',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -170,7 +188,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               controller: _passwordController,
               obscureText: true,
               decoration: InputDecoration(
-                labelText: 'ganti Password',
+                labelText: 'Edit Password',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -182,7 +200,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   print('Password: ${_passwordController.text}');
                   Navigator.pop(context);
                 },
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                 child: Text('Save'),
               ),
             ),
