@@ -13,6 +13,11 @@ dependencies:
     sdk: flutter
   shared_preferences: ^2.1.1
   cupertino_icons: ^1.0.8
+  file_picker: ^8.1.7
+  intl: ^0.20.1
+  cached_network_image: ^3.4.1
+
+
 
 dev_dependencies:
   flutter_test:
@@ -24,25 +29,96 @@ flutter:
 
   uses-material-design: true
   assets:
-    - assets/nature.jpg
-    - assets/naturee.jpg
-    - assets/houseplant-peperomia.jpg
-    - assets/houseplant-crassula.jpg
-    - assets/houseplant-asplenium.jpg
-    - assets/vitamin-b.jpg
-    - assets/Peperomia Houseplant.png
-    - assets/Peperomia Obtusfolia.png
-    - assets/Notifikasi.png
-    - assets/logoDana.png
-    - assets/logoOVO.png
-    - assets/logoShoppeePay.png
-    - assets/images/toko1.jpg
-    - assets/images/toko2.jpg
-    - assets/images/toko3.jpg
-    - assets/images/toko4.jpg
-    - assets/images/toko5.jpg
-    - assets/images/profile.jpg
-    - assets/images/toko5.jpg
-    - assets/images/profile.jpg
 
+  #Additional
+    - assets/Additional/Flowers.jpg
+    - assets/Additional/backgroundChat.jpg
 
+  #Store
+    - assets/Store/Delovery.jpg
+    - assets/Store/Florist.jpg
+    - assets/Store/Outerbloom.jpg
+    - assets/Store/FloraIndah.jpg
+    - assets/Store/RumahHijau.jpg
+    - assets/Store/TanamanAsri.jpg
+    - assets/Store/KebunKita.jpg
+    - assets/Store/TamanSurya.jpg
+    - assets/Store/KebunNusantara.jpg
+    - assets/Store/TanamanHijau.jpg
+    - assets/Store/Floranesia.jpg
+    - assets/Store/HijauSegar.jpg
+    - assets/Store/TanamanIndah.jpg
+    - assets/Store/Plantopia.jpg
+    - assets/Store/UrbanPlants.jpg
+    - assets/Store/GreenSpace.jpg
+    - assets/Store/EcoGarden.jpg
+    - assets/Store/NatureBloom.jpg
+    - assets/Store/FreshGarden.jpg
+    - assets/Store/FreshFlower.jpg
+    - assets/Store/BumiHijau.jpg
+    - assets/Store/SerasiFlora.jpg
+    - assets/Store/TanamanKita.jpg
+    - assets/Store/Florania.jpg
+    - assets/Store/HarmoniHijau.jpg
+    - assets/Store/GreenVista.jpg
+    - assets/Store/DekorFlora.jpg
+    - assets/Store/KebunHarmoni.jpg
+    - assets/Store/FloraMekar.jpg
+    - assets/Store/GreenLeaf.jpg
+    - assets/Store/FreshBotanics.jpg
+    - assets/Store/FloralDreams.jpg
+    - assets/Store/NatureHaven.jpg
+    - assets/Store/BlossomSquare.jpg
+    - assets/Store/GreenFlora.jpg
+    - assets/Store/EcoSprout.jpg
+    - assets/Store/UrbanJungle.jpg
+    - assets/Store/NatureLove.jpg
+    - assets/Store/LushHaven.jpg
+    - assets/Store/HijauSegar.jpg
+    - assets/Store/FreshGarden.jpg
+    - assets/Store/KebunAlami.jpg
+    - assets/Store/TamanSegar.jpg
+    - assets/Store/GreenParadise.jpg
+    - assets/Store/FloraRia.jpg
+    - assets/Store/KebunBunga.jpg
+    - assets/Store/TamanLestari.jpg
+    - assets/Store/NidiraFlorist.jpg
+    - assets/Store/KadoPlus.jpg
+    - assets/Store/pinusFlorist.jpg
+    - assets/Store/TheMillionBloom.jpg
+    - assets/Store/NesiaFlorist.jpg
+    - assets/Store/RizCreations.jpg
+    - assets/Store/Prestisa.jpg
+    - assets/Store/FlowerAdvisor.jpg
+
+#Payment
+    - assets/Product/Flowers/MawarMerah.jpg
+    - assets/Product/Flowers/Lavender.jpg
+    - assets/Product/Flowers/Camellia.jpg
+    - assets/Product/Flowers/Peony.jpg
+    - assets/Product/Flowers/Tulip.jpg
+
+    #Payment
+    - assets/Payment/Gopay.png
+    - assets/Payment/LinkAja.png
+    - assets/Payment/Ovo.png
+    - assets/Payment/ShopeePay.png
+    - assets/Payment/Dana.png
+    - assets/Payment/BCA.png
+    - assets/Payment/Mandiri.png
+    - assets/Payment/BNI.png
+    - assets/Payment/BRI.png
+    - assets/Payment/BSI.png
+    - assets/Payment/PermataBank.png
+    - assets/Payment/SeaBank.png
+    - assets/Payment/BankMega.png
+    - assets/Payment/UOB.png
+    - assets/Payment/Maybank.png
+    - assets/Payment/DBS.png
+    - assets/Payment/Jenius.png
+    - assets/Payment/Danamon.png
+    - assets/Payment/CimbNiaga.png
+    - assets/Payment/AgenBRILink.png
+    - assets/Payment/Alfamart.png
+    - assets/Payment/Indomaret.png
+    - assets/Payment/BNIagen46.png
