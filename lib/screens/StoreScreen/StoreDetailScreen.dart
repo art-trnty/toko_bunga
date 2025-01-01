@@ -53,7 +53,6 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
     });
 
     if (index == 3 && cartDetails.isEmpty) {
-      // Show a message if the user tries to access the CartScreen with an empty cart
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
             content: Text("Tambahkan produk ke keranjang terlebih dahulu.")),
@@ -142,9 +141,11 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
   }
 
   List<Map<String, String>> getDiscountedProducts() {
-    return getProductsForStore(widget.toko.name)
-        .where((product) => product.containsKey("discountPrice"))
-        .toList();
+    return getProductsForStore(widget.toko.name).where((product) {
+      return product.containsKey("discountPrice") &&
+          product["discountPrice"]!.isNotEmpty &&
+          product["discountPrice"] != product["price"];
+    }).toList();
   }
 
   @override

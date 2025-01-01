@@ -91,12 +91,25 @@ flutter:
     - assets/Store/Prestisa.jpg
     - assets/Store/FlowerAdvisor.jpg
 
-#Payment
+  #Product
     - assets/Product/Flowers/MawarMerah.jpg
     - assets/Product/Flowers/Lavender.jpg
     - assets/Product/Flowers/Camellia.jpg
     - assets/Product/Flowers/Peony.jpg
     - assets/Product/Flowers/Tulip.jpg
+    - assets/Product/Flowers/Dahlia.jpg
+    - assets/Product/Flowers/Gerbera.jpg
+    - assets/Product/Flowers/Marigold.jpg
+    - assets/Product/Flowers/MarigoldWhite.jpg
+    - assets/Product/Flowers/MawarPink.jpg
+    - assets/Product/Flowers/.jpg
+    - assets/Product/Flowers.jpg
+    - assets/Product/Alat/PotBunga.jpg
+
+
+
+
+
 
     #Payment
     - assets/Payment/Gopay.png
