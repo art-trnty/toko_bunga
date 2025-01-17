@@ -32,14 +32,8 @@ final Map<String, List<Map<String, String>>> storeProducts = {
       "availability": "Tersedia",
       "isNew": "true"
     },
-    {
-      "name": "Amorphophallus Titanum",
-      "price": "Rp 800.000.000",
-      "discountPrice": "",
-      "image": "assets/Product/Flowers/AmorphophallusTitanum.jpg",
-      "availability": "Tersedia",
-      "isNew": "true"
-    },
+  ],
+  'Istana Florist': [
     {
       "name": "Bunga Melati",
       "price": "Rp 200.000",
@@ -65,14 +59,6 @@ final Map<String, List<Map<String, String>>> storeProducts = {
       "isNew": "true"
     },
     {
-      "name": "Edelweis Jawa (Anaphalis javanica)",
-      "price": "Rp 300.000",
-      "discountPrice": "",
-      "image": "assets/Product/Flowers/EdelweisJawa.jpg",
-      "availability": "Tersedia",
-      "isNew": "true"
-    },
-    {
       "name": "Bunga Kedupul",
       "price": "Rp 200.000",
       "discountPrice": "",
@@ -82,21 +68,14 @@ final Map<String, List<Map<String, String>>> storeProducts = {
     },
     // Add more products...
   ],
-  'Istana Florist': [
+  'Outerbloom': [
     {
-      "name": "Camellia",
-      "price": "Rp 80.000",
-      "discountPrice": "Rp 80.000",
-      "image": "assets/Product/Flowers/Camellia.jpg",
+      "name": "Amorphophallus Titanum",
+      "price": "Rp 800.000.000",
+      "discountPrice": "",
+      "image": "assets/Product/Flowers/AmorphophallusTitanum.jpg",
       "availability": "Tersedia",
-      "rating": "4.7",
-      "salesRating": "4.9",
-      "description": "Bunga dengan kelopak lembut dan warna bervariasi.",
-      "importantInfo":
-      "Melambangkan cinta abadi dan keberanian, cocok untuk hadiah romantis.",
       "isNew": "true"
     },
-    // Add more products...
   ],
-  // Define other stores and their products...
 };

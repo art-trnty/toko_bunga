@@ -77,17 +77,17 @@ class _SearchProductScreenState extends State<SearchProductScreen> {
                   prefixIcon: Icon(Icons.search),
                   border: InputBorder.none,
                   contentPadding:
-                  EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 ),
                 onChanged: (query) => setState(() {
                   _filteredProductList =
                       getProductsForStore(widget.toko.name).where((product) {
-                        final productName = product['name']!.toLowerCase();
-                        final productPrice = product['price']!.toLowerCase();
-                        final searchQuery = query.toLowerCase();
-                        return productName.contains(searchQuery) ||
-                            productPrice.contains(searchQuery);
-                      }).toList();
+                    final productName = product['name']!.toLowerCase();
+                    final productPrice = product['price']!.toLowerCase();
+                    final searchQuery = query.toLowerCase();
+                    return productName.contains(searchQuery) ||
+                        productPrice.contains(searchQuery);
+                  }).toList();
                 }),
               ),
             ),
@@ -202,7 +202,7 @@ class _ZoomableProductCardState extends State<ZoomableProductCard>
                   child: Image.asset(
                     widget.product['image']!,
                     fit:
-                    BoxFit.cover, // Ensure the image covers the entire area
+                        BoxFit.cover, // Ensure the image covers the entire area
                   ),
                 ),
               ),
