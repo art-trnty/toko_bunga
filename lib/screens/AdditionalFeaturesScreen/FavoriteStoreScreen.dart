@@ -16,6 +16,7 @@ class _FavoriteStoreScreenState extends State<FavoriteStoreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false, // Hides the back button
         backgroundColor: Colors.green,
         title: Center(
           child: Text(

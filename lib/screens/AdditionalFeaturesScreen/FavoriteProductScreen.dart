@@ -68,22 +68,22 @@ class _FavoriteProductScreenState extends State<FavoriteProductScreen> {
           padding: const EdgeInsets.all(16.0),
           child: widget.favoriteProducts.isEmpty
               ? Center(
-                  child: Text(
-                    'No favorite products yet.',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green,
-                    ),
-                  ),
-                )
+            child: Text(
+              'No favorite products yet.',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.green,
+              ),
+            ),
+          )
               : ListView.builder(
-                  itemCount: widget.favoriteProducts.length,
-                  itemBuilder: (context, index) {
-                    return _buildProductCard(
-                        widget.favoriteProducts[index], index);
-                  },
-                ),
+            itemCount: widget.favoriteProducts.length,
+            itemBuilder: (context, index) {
+              return _buildProductCard(
+                  widget.favoriteProducts[index], index);
+            },
+          ),
         ),
       ),
     );
@@ -139,6 +139,10 @@ class _FavoriteProductScreenState extends State<FavoriteProductScreen> {
                     ),
                   ),
                   subtitle: Text('Price: ${product["price"]}'),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete, color: Colors.red),
+                    onPressed: () => widget.onRemove(index),
+                  ),
                 ),
               ),
             ),

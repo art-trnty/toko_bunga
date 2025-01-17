@@ -97,9 +97,35 @@ class _CartScreenState extends State<CartScreen> {
   void applyPromoCode() {
     setState(() {
       if (promoCodes.containsKey(_promoController.text)) {
-        _isPromoValid = true;
-        _promoCode = _promoController.text;
-        _promoDiscount = promoCodes[_promoCode]!;
+        double newDiscount = promoCodes[_promoController.text]!;
+        if (_isPromoValid) {
+          if (_promoController.text == _promoCode) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Promo code already used.')),
+            );
+          } else if (newDiscount > _promoDiscount) {
+            _promoDiscount = newDiscount;
+            _promoCode = _promoController.text;
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                  content: Text(
+                      'Promo code applied. Previous discount has been replaced.')),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                  content: Text(
+                      'New promo code discount is less than the current discount.')),
+            );
+          }
+        } else {
+          _isPromoValid = true;
+          _promoCode = _promoController.text;
+          _promoDiscount = newDiscount;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Promo code applied successfully.')),
+          );
+        }
       } else {
         _isPromoValid = false;
         _promoCode = '';
@@ -264,6 +290,26 @@ class _CartScreenState extends State<CartScreen> {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: Text('Alamat Belum Diisi'),
+                    content:
+                        Text('Silakan isi alamat pengiriman terlebih dahulu.'),
+                    actions: [
+                      TextButton(
+                        child: Text('OK'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            } else if (!_isAddressSaved) {
+              // Show an alert dialog if the address is not saved
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Alamat Belum Disimpan'),
                     content:
                         Text('Silakan isi alamat pengiriman terlebih dahulu.'),
                     actions: [

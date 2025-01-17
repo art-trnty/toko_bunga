@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toko_bunga/screens/PaymentScreen/CartScreen.dart'; // Import the CartScreen
 
 class ProductDetailScreen extends StatelessWidget {
   final Map<String, String> product;
@@ -138,7 +139,27 @@ class ProductDetailScreen extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    // Add your action here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CartScreen(
+                          cartItems: [
+                            // Example cart item
+                            {
+                              'name': product['name']!,
+                              'price': double.parse(product['price']!
+                                  .replaceAll(RegExp(r'[^0-9]'), '')),
+                              'quantity': 1,
+                              'isSelected': true,
+                              'image': product['image']!,
+                            },
+                          ],
+                          onUpdateCart: (updatedCart) {
+                            // Handle cart update
+                          },
+                        ),
+                      ),
+                    );
                   },
                   child: Text('Beli Sekarang'),
                   style: ElevatedButton.styleFrom(

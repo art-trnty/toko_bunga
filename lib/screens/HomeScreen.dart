@@ -51,27 +51,29 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: [
-          HomeContent(
-            onFavoriteToggle: _updateFavorites,
-            favoriteStores: favoriteStores,
-            searchController: searchController,
-            filteredTokoList: filteredTokoList,
-            filterStores: _filterStores,
-          ),
-          InformationProduct(),
-          FavoriteStoreScreen(
-            favoriteStores: favoriteStores,
-            onRemove: (index) {
-              _removeFavoriteStore(index);
-              // Trigger a rebuild for HomeContent
-              setState(() {});
-            },
-          ),
-          ProfileScreen(),
-        ],
+      body: WillPopScope(
+        onWillPop: () async => false,
+        child: IndexedStack(
+          index: _selectedIndex,
+          children: [
+            HomeContent(
+              onFavoriteToggle: _updateFavorites,
+              favoriteStores: favoriteStores,
+              searchController: searchController,
+              filteredTokoList: filteredTokoList,
+              filterStores: _filterStores,
+            ),
+            InformationProduct(),
+            FavoriteStoreScreen(
+              favoriteStores: favoriteStores,
+              onRemove: (index) {
+                _removeFavoriteStore(index);
+                setState(() {});
+              },
+            ),
+            ProfileScreen(),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
@@ -86,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.analytics),
-            label: 'Data Product',
+            label: 'DataProduct',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
@@ -102,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-//... other imports
+// ...other imports
 
 class HomeContent extends StatefulWidget {
   final Function(Toko) onFavoriteToggle;
@@ -143,10 +145,11 @@ class _HomeContentState extends State<HomeContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false, // Hides the back button
         backgroundColor: Colors.green,
         title: Center(
           child: Text(
-            'Florist App',
+            'FloristApp',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -253,10 +256,9 @@ class _HomeContentState extends State<HomeContent> {
                             boxShadow: isHovered[index]
                                 ? [
                                     BoxShadow(
-                                      color: Colors.black26,
-                                      blurRadius: 10.0,
-                                      offset: Offset(0, 5),
-                                    ),
+                                        color: Colors.black26,
+                                        blurRadius: 10.0,
+                                        offset: Offset(0, 5))
                                   ]
                                 : [],
                           ),
@@ -278,9 +280,7 @@ class _HomeContentState extends State<HomeContent> {
                               ),
                               title: Text(
                                 toko.name,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               subtitle: Row(
                                 children: [

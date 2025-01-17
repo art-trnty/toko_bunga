@@ -75,7 +75,7 @@ class _ProductCardState extends State<ProductCard> {
                           ),
                           child: Center(
                             child:
-                                Image.asset(widget.imageUrl, fit: BoxFit.cover),
+                            Image.asset(widget.imageUrl, fit: BoxFit.cover),
                           ),
                         ),
                       ),
@@ -115,7 +115,7 @@ class _ProductCardState extends State<ProductCard> {
                                           ? Colors.green
                                           : Colors.red),
                                   onPressed:
-                                      isAvailable ? widget.onAddToCart : null,
+                                  isAvailable ? widget.onAddToCart : null,
                                 ),
                               ],
                             ),

@@ -3,9 +3,9 @@ import 'package:toko_bunga/data/product_data.dart';
 import 'package:toko_bunga/models/toko.dart';
 import 'package:toko_bunga/screens/AdditionalFeaturesScreen/ChatScreen.dart';
 import 'package:toko_bunga/screens/AdditionalFeaturesScreen/FavoriteProductScreen.dart';
-import 'package:toko_bunga/screens/AdditionalFeaturesScreen/ProfileScreen.dart';
 import 'package:toko_bunga/screens/PaymentScreen/CartScreen.dart';
 import 'package:toko_bunga/screens/AdditionalFeaturesScreen/SearchProductScreen.dart';
+import 'package:toko_bunga/screens/StoreScreen/NewProductScreen.dart';
 import 'package:toko_bunga/widgets/StoreDetailScreen/StoreHeader.dart';
 import 'package:toko_bunga/widgets/StoreDetailScreen/ProductCard.dart';
 import 'package:toko_bunga/widgets/StoreDetailScreen/ReviewCard.dart';
@@ -70,7 +70,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                   widget.favoriteProducts.removeAt(index);
                   if (widget.favoriteProducts.isEmpty ||
                       !widget.favoriteProducts.any(
-                          (product) => product["store"] == widget.toko.name)) {
+                              (product) => product["store"] == widget.toko.name)) {
                     isFavorite = false;
                     widget.favoriteStores.remove(widget.toko);
                   }
@@ -79,7 +79,8 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
               favoriteProducts: widget.favoriteProducts,
             );
           case 2:
-            return ProfileScreen();
+            return NewProductScreen(
+                toko: widget.toko); // Redirect to new product page
           case 3:
             return CartScreen(
               cartItems: cartDetails,
@@ -103,13 +104,18 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
     setState(() {
       cartItems[product["name"]!] = (cartItems[product["name"]!] ?? 0) + 1;
       cartDetails = cartItems.entries.map((entry) {
-        final productDetail = getProductsForStore(widget.toko.name)
-            .firstWhere((p) => p["name"] == entry.key, orElse: () => {});
+        final productDetail = getProductsForStore(widget.toko.name).firstWhere(
+              (p) => p["name"] == entry.key,
+          orElse: () => {},
+        );
+        final price = (productDetail["discountPrice"] != null &&
+            productDetail["discountPrice"]!.isNotEmpty)
+            ? productDetail["discountPrice"]
+            : productDetail["price"];
         return {
           "name": entry.key,
           "quantity": entry.value,
-          "price": productDetail["discountPrice"] ??
-              productDetail["price"]!.replaceAll(RegExp(r'[^0-9]'), ''),
+          "price": price,
           "store": widget.toko.name,
           "image": productDetail["image"],
         };
@@ -131,11 +137,11 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
   void addToFavorite(Map<String, String> product) {
     setState(() {
       if (!widget.favoriteProducts.any(
-          (favoriteProduct) => favoriteProduct["name"] == product["name"])) {
+              (favoriteProduct) => favoriteProduct["name"] == product["name"])) {
         widget.favoriteProducts.add(product);
       } else {
         widget.favoriteProducts.removeWhere(
-            (favoriteProduct) => favoriteProduct["name"] == product["name"]);
+                (favoriteProduct) => favoriteProduct["name"] == product["name"]);
       }
     });
   }
@@ -143,6 +149,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
   List<Map<String, String>> getDiscountedProducts() {
     return getProductsForStore(widget.toko.name).where((product) {
       return product.containsKey("discountPrice") &&
+          product["discountPrice"] != null &&
           product["discountPrice"]!.isNotEmpty &&
           product["discountPrice"] != product["price"];
     }).toList();
@@ -153,6 +160,11 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
     List<Map<String, String>> products = getProductsForStore(widget.toko.name);
     List<Map<String, String>> reviews = widget.toko.reviews;
     List<Map<String, String>> discountedProducts = getDiscountedProducts();
+
+    // Filter out discounted products from the regular product list
+    List<Map<String, String>> filteredProducts = products
+        .where((product) => !discountedProducts.contains(product))
+        .toList();
 
     return DefaultTabController(
       length: 3,
@@ -223,20 +235,24 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                         mainAxisSpacing: 16,
                         childAspectRatio: 0.7,
                       ),
-                      itemCount: products.length,
+                      itemCount: filteredProducts.length,
                       itemBuilder: (context, index) {
                         return ProductCard(
-                          name: products[index]["name"]!,
-                          price: products[index]["price"]!,
-                          imageUrl: products[index]["image"]!,
-                          availability: products[index]["availability"]!,
-                          onAddToCart: () => addToCart(products[index]),
-                          onAddToFavorite: () => addToFavorite(products[index]),
-                          quantity: cartItems[products[index]["name"]] ?? 0,
+                          name: filteredProducts[index]["name"]!,
+                          price: filteredProducts[index]["price"]!,
+                          imageUrl: filteredProducts[index]["image"]!,
+                          availability: filteredProducts[index]
+                          ["availability"]!,
+                          onAddToCart: () => addToCart(filteredProducts[index]),
+                          onAddToFavorite: () =>
+                              addToFavorite(filteredProducts[index]),
+                          quantity:
+                          cartItems[filteredProducts[index]["name"]] ?? 0,
                           isFavorite: widget.favoriteProducts.any(
-                              (favoriteProduct) =>
-                                  favoriteProduct["name"] ==
-                                  products[index]["name"]),
+                                (favoriteProduct) =>
+                            favoriteProduct["name"] ==
+                                filteredProducts[index]["name"],
+                          ),
                         );
                       },
                     ),
@@ -245,25 +261,26 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                     padding: const EdgeInsets.all(16.0),
                     child: discountedProducts.isEmpty
                         ? Center(
-                            child: Text("No discounted products available."))
+                        child: Text("No discounted products available."))
                         : ListView.builder(
-                            itemCount: discountedProducts.length,
-                            itemBuilder: (context, index) {
-                              return DiscountedProductCard(
-                                product: discountedProducts[index],
-                                addToCart: addToCart,
-                                addToFavorite: () =>
-                                    addToFavorite(discountedProducts[index]),
-                                cartCount: cartItems[discountedProducts[index]
-                                        ["name"]] ??
-                                    0,
-                                isFavorite: widget.favoriteProducts.any(
-                                    (favoriteProduct) =>
-                                        favoriteProduct["name"] ==
-                                        discountedProducts[index]["name"]),
-                              );
-                            },
+                      itemCount: discountedProducts.length,
+                      itemBuilder: (context, index) {
+                        return DiscountedProductCard(
+                          product: discountedProducts[index],
+                          addToCart: addToCart,
+                          addToFavorite: () =>
+                              addToFavorite(discountedProducts[index]),
+                          cartCount: cartItems[discountedProducts[index]
+                          ["name"]] ??
+                              0,
+                          isFavorite: widget.favoriteProducts.any(
+                                (favoriteProduct) =>
+                            favoriteProduct["name"] ==
+                                discountedProducts[index]["name"],
                           ),
+                        );
+                      },
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -296,7 +313,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
               label: "",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person,
+              icon: Icon(Icons.event_note,
                   color: _buttonActive[2] ? Colors.green : Colors.grey),
               label: "",
             ),

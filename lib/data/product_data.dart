@@ -3,14 +3,14 @@ final Map<String, List<Map<String, String>>> storeProducts = {
     {
       "name": "Mawar Merah",
       "price": "Rp 50.000",
-      "discountPrice": "Rp 40.000",
+      "discountPrice": "",
       "image": "assets/Product/Flowers/MawarMerah.jpg",
       "availability": "Tersedia",
       "rating": "4.7",
       "salesRating": "4.9",
       "description": "Mawar merah melambangkan cinta dan penghargaan.",
       "importantInfo":
-          "Cocok untuk perayaan romantis seperti Hari Valentine dan pernikahan."
+      "Cocok untuk perayaan romantis seperti Hari Valentine dan pernikahan."
     },
     {
       "name": "Bunga Tulip",
@@ -22,7 +22,7 @@ final Map<String, List<Map<String, String>>> storeProducts = {
       "salesRating": "4.9",
       "description": "Tulip memiliki bentuk unik dan warna cerah yang beragam.",
       "importantInfo":
-          "Biasanya diberikan sebagai tanda cinta yang sempurna atau pernyataan kebahagiaan."
+      "Biasanya diberikan sebagai tanda cinta yang sempurna atau pernyataan kebahagiaan."
     },
     {
       "name": "Lavender",
@@ -34,7 +34,7 @@ final Map<String, List<Map<String, String>>> storeProducts = {
       "salesRating": "4.9",
       "description": "Memiliki warna ungu lembut dan aroma menenangkan.",
       "importantInfo":
-          "Digunakan untuk memberikan rasa tenang dan relaksasi, sering dijadikan hadiah santai."
+      "Digunakan untuk memberikan rasa tenang dan relaksasi, sering dijadikan hadiah santai."
     },
     {
       "name": "Camellia",
@@ -46,7 +46,7 @@ final Map<String, List<Map<String, String>>> storeProducts = {
       "salesRating": "4.9",
       "description": "Bunga dengan kelopak lembut dan warna bervariasi.",
       "importantInfo":
-          "Melambangkan cinta abadi dan keberanian, cocok untuk hadiah romantis."
+      "Melambangkan cinta abadi dan keberanian, cocok untuk hadiah romantis."
     },
     {
       "name": "Peony",
@@ -95,7 +95,7 @@ final Map<String, List<Map<String, String>>> storeProducts = {
     {
       "name": "Mawar Pink",
       "price": "Rp 55.000",
-      "discountPrice": "Rp ",
+      "discountPrice": "",
       "image": "assets/Product/Flowers/MawarPink.jpg",
       "availability": "Tersedia",
       "rating": "3.8",
@@ -106,14 +106,14 @@ final Map<String, List<Map<String, String>>> storeProducts = {
     {
       "name": " Marigold",
       "price": "Rp25.000 ",
-      "discountPrice": "Rp ",
+      "discountPrice": "",
       "image": "assets/Product/Flowers/Marigold.jpg",
       "availability": "Tersedia",
       "rating": "4.6",
       "salesRating": "3.7",
       "description": "Bunga dengan warna oranye cerah dan bentuk indah.",
       "importantInfo":
-          "Melambangkan kehangatan dan kesuksesan, sering digunakan dalam acara tradisional."
+      "Melambangkan kehangatan dan kesuksesan, sering digunakan dalam acara tradisional."
     },
     {
       "name": " Marigold White",
@@ -125,7 +125,7 @@ final Map<String, List<Map<String, String>>> storeProducts = {
       "salesRating": "3.7",
       "description": "Bunga dengan warna oranye cerah dan bentuk indah.",
       "importantInfo":
-          "Melambangkan kehangatan dan kesuksesan, sering digunakan dalam acara tradisional."
+      "Melambangkan kehangatan dan kesuksesan, sering digunakan dalam acara tradisional."
     },
     // {
     //   "name": "",
@@ -150,7 +150,7 @@ final Map<String, List<Map<String, String>>> storeProducts = {
       "salesRating": "4.9",
       "description": "Bunga dengan kelopak lembut dan warna bervariasi.",
       "importantInfo":
-          "Melambangkan cinta abadi dan keberanian, cocok untuk hadiah romantis."
+      "Melambangkan cinta abadi dan keberanian, cocok untuk hadiah romantis."
     },
     {
       "name": "Mawar Merah",
@@ -162,7 +162,7 @@ final Map<String, List<Map<String, String>>> storeProducts = {
       "salesRating": "4.9",
       "description": "A succulent that adds a touch of green to any space.",
       "importantInfo":
-          "Thrivedfsdfss in bright light. Requires minimal watering."
+      "Thrivedfsdfss in bright light. Requires minimal watering."
     },
   ],
 };

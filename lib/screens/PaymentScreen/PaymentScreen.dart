@@ -47,13 +47,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
     double itemTotal = widget.cartItems.fold(
         0.0,
-        (sum, item) =>
-            sum +
+            (sum, item) =>
+        sum +
             ((item['price'] is String
-                    ? double.parse(item['price']
-                        .toString()
-                        .replaceAll(RegExp(r'[^0-9]'), ''))
-                    : item['price']) as double) *
+                ? double.parse(item['price']
+                .toString()
+                .replaceAll(RegExp(r'[^0-9]'), ''))
+                : item['price']) as double) *
                 item['quantity']);
 
     return Scaffold(
@@ -83,6 +83,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Navigator.pop(context); // Kembali ke Halaman Sebelumnya
           },
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.shop_two_outlined, color: Colors.white),
+            onPressed: () {
+              // Add your desired action here
+            },
+          ),
+        ],
       ),
       body: ListView(
         padding: EdgeInsets.all(16.0),
@@ -919,7 +927,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         discount: widget.discount,
                         shippingFee: widget.shippingFee,
                         paymentStatus:
-                            'Pembayaran Anda sedang dikonfirmasi terlebih dahulu oleh Admin Toko, Setelah selesai dicek pihak toko maka akan dikirimkan notifikasi pembayaran diterima atau tidak melalui halaman Histori Transaksi Anda.',
+                        'Pembayaran Anda sedang dikonfirmasi terlebih dahulu oleh Admin Toko, Setelah selesai dicek pihak toko maka akan dikirimkan notifikasi pembayaran diterima atau tidak melalui halaman Histori Transaksi Anda.',
                         selectedPaymentMethod: _selectedPaymentMethod,
                       ),
                     ),
@@ -929,7 +937,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               child: Text(
                 'Buat Pesanan',
                 style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
+                TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
               ),
             ),
           )

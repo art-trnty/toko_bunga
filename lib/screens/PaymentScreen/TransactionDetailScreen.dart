@@ -73,7 +73,7 @@ class TransactionDetailScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Rp.${item['price']}',
+                              '${item['price']}',
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.green,
@@ -195,9 +195,9 @@ class TransactionDetailScreen extends StatelessWidget {
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color:
-                        paymentStatusMessage == 'Produk Akan Segera Dikirimkan'
-                            ? Colors.green
-                            : Colors.red,
+                    paymentStatusMessage == 'Produk Akan Segera Dikirimkan'
+                        ? Colors.green
+                        : Colors.red,
                   ),
                 ),
               ),

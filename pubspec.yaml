@@ -16,6 +16,7 @@ dependencies:
   file_picker: ^8.1.7
   intl: ^0.20.1
   cached_network_image: ^3.4.1
+  image_picker: ^1.1.2
 
 
 
@@ -30,24 +31,22 @@ flutter:
   uses-material-design: true
   assets:
 
-  #Additional
+    #Additional
     - assets/Additional/Flowers.jpg
+    - assets/Additional/backgroundSign-In.png
+    - assets/Additional/backgroundSign-Up.png
     - assets/Additional/backgroundChat.jpg
+    - assets/Additional/backgroundEditProfile.png
+    - assets/Additional/backgroundOrderTransaction.png
 
-  #Store
+
+
+
+    #Store
     - assets/Store/Delovery.jpg
     - assets/Store/Florist.jpg
     - assets/Store/Outerbloom.jpg
-    - assets/Store/FloraIndah.jpg
-    - assets/Store/RumahHijau.jpg
-    - assets/Store/TanamanAsri.jpg
-    - assets/Store/KebunKita.jpg
-    - assets/Store/TamanSurya.jpg
-    - assets/Store/KebunNusantara.jpg
-    - assets/Store/TanamanHijau.jpg
     - assets/Store/Floranesia.jpg
-    - assets/Store/HijauSegar.jpg
-    - assets/Store/TanamanIndah.jpg
     - assets/Store/Plantopia.jpg
     - assets/Store/UrbanPlants.jpg
     - assets/Store/GreenSpace.jpg
@@ -55,33 +54,20 @@ flutter:
     - assets/Store/NatureBloom.jpg
     - assets/Store/FreshGarden.jpg
     - assets/Store/FreshFlower.jpg
-    - assets/Store/BumiHijau.jpg
-    - assets/Store/SerasiFlora.jpg
-    - assets/Store/TanamanKita.jpg
     - assets/Store/Florania.jpg
-    - assets/Store/HarmoniHijau.jpg
     - assets/Store/GreenVista.jpg
-    - assets/Store/DekorFlora.jpg
-    - assets/Store/KebunHarmoni.jpg
-    - assets/Store/FloraMekar.jpg
     - assets/Store/GreenLeaf.jpg
     - assets/Store/FreshBotanics.jpg
     - assets/Store/FloralDreams.jpg
     - assets/Store/NatureHaven.jpg
     - assets/Store/BlossomSquare.jpg
     - assets/Store/GreenFlora.jpg
-    - assets/Store/EcoSprout.jpg
     - assets/Store/UrbanJungle.jpg
     - assets/Store/NatureLove.jpg
     - assets/Store/LushHaven.jpg
-    - assets/Store/HijauSegar.jpg
     - assets/Store/FreshGarden.jpg
-    - assets/Store/KebunAlami.jpg
-    - assets/Store/TamanSegar.jpg
     - assets/Store/GreenParadise.jpg
     - assets/Store/FloraRia.jpg
-    - assets/Store/KebunBunga.jpg
-    - assets/Store/TamanLestari.jpg
     - assets/Store/NidiraFlorist.jpg
     - assets/Store/KadoPlus.jpg
     - assets/Store/pinusFlorist.jpg
@@ -91,7 +77,7 @@ flutter:
     - assets/Store/Prestisa.jpg
     - assets/Store/FlowerAdvisor.jpg
 
-  #Product
+    #Product
     - assets/Product/Flowers/MawarMerah.jpg
     - assets/Product/Flowers/Lavender.jpg
     - assets/Product/Flowers/Camellia.jpg
@@ -102,8 +88,17 @@ flutter:
     - assets/Product/Flowers/Marigold.jpg
     - assets/Product/Flowers/MarigoldWhite.jpg
     - assets/Product/Flowers/MawarPink.jpg
-    - assets/Product/Flowers/.jpg
-    - assets/Product/Flowers.jpg
+    - assets/Product/Flowers/Kedupul.jpg
+    - assets/Product/Flowers/MawarJuliet.jpg
+    - assets/Product/Flowers/AnggrekNS.jpg
+    - assets/Product/Flowers/AnggrekMawar.jpg
+    - assets/Product/Flowers/AnggrekBulan.jpg
+    - assets/Product/Flowers/Melati.jpg
+    - assets/Product/Flowers/AmorphophallusTitanum.jpg
+    - assets/Product/Flowers/RafflesiaArnoldii.jpg
+    #    - assets/Product/Flowers.jpg
+
+
     - assets/Product/Alat/PotBunga.jpg
 
 

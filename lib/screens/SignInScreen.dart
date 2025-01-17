@@ -1,193 +1,180 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'package:toko_bunga/screens/LoginScreen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart';
+import 'package:toko_bunga/screens/HomeScreen.dart';
+import 'package:toko_bunga/main.dart';
 
-class SigninscreenPage extends StatefulWidget {
+class SignInScreen extends StatefulWidget {
   @override
-  _SigninscreenPageState createState() => _SigninscreenPageState();
+  _SignInScreenState createState() => _SignInScreenState();
 }
 
-class _SigninscreenPageState extends State<SigninscreenPage> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
+class _SignInScreenState extends State<SignInScreen> {
+  final TextEditingController emailOrUsernameController =
+  TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   bool _isPasswordVisible = false;
-
-  void _togglePasswordVisibility() {
-    setState(() {
-      _isPasswordVisible = !_isPasswordVisible;
-    });
-  }
-
-  Future<void> _saveUserData(String email, String password) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('savedEmail', email);
-    await prefs.setString('savedPassword', password);
-  }
-
-  void _register() async {
-    String email = emailController.text.trim();
-    String username = usernameController.text.trim();
-    String password = passwordController.text.trim();
-    String confirmPassword = confirmPasswordController.text.trim();
-
-    if (email.isNotEmpty &&
-        username.isNotEmpty &&
-        password.isNotEmpty &&
-        password == confirmPassword) {
-      // Simpan data email dan password
-      await _saveUserData(email, password);
-
-      // Tampilkan dialog sukses
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text('Registrasi Berhasil'),
-          content: Text('Akun telah berhasil dibuat. Silakan login.'),
-          actions: [
-            TextButton(
-              child: Text('OK'),
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
-                );
-              },
-            ),
-          ],
-        ),
-      );
-    } else {
-      // Tampilkan pesan error jika ada input yang salah
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            password != confirmPassword
-                ? 'Kata sandi tidak cocok.'
-                : 'Silakan periksa kembali data yang Anda masukkan.',
-          ),
-        ),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 50),
-            const Text(
-              "Registrasi",
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false, // Remove back button
+          backgroundColor: Colors.green.shade700,
+          title: Center(
+            child: Text(
+              'Sign-In',
               style: TextStyle(
-                fontSize: 28,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-            const SizedBox(height: 8),
-            RichText(
-              text: TextSpan(
-                text: "Sudah punya akun? ",
-                style: const TextStyle(color: Colors.black54, fontSize: 14),
-                children: [
-                  TextSpan(
-                    text: "Masuk disini!",
-                    style: TextStyle(
-                      color: Colors.blue.shade700,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginScreen()),
-                        );
-                      },
+                letterSpacing: 2.0,
+                color: Colors.white,
+                shadows: [
+                  Shadow(
+                    offset: Offset(2.0, 2.0),
+                    blurRadius: 3.0,
+                    color: Colors.black45,
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 24),
-            TextField(
-              controller: emailController,
-              decoration: InputDecoration(
-                labelText: "Email",
-                hintText: "Masukkan alamat emailmu",
-                prefixIcon: Icon(Icons.email),
-                border: UnderlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: usernameController,
-              decoration: InputDecoration(
-                labelText: "Username",
-                hintText: "Masukkan namamu",
-                prefixIcon: Icon(Icons.person),
-                border: UnderlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: passwordController,
-              obscureText: !_isPasswordVisible,
-              decoration: InputDecoration(
-                labelText: "Kata sandi",
-                hintText: "Masukkan kata sandimu",
-                prefixIcon: Icon(Icons.lock),
-                suffixIcon: IconButton(
-                  icon: Icon(_isPasswordVisible
-                      ? Icons.visibility
-                      : Icons.visibility_off),
-                  onPressed: _togglePasswordVisibility,
+          ),
+        ),
+        body: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.green.shade400, Colors.green.shade100],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
                 ),
-                border: UnderlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: confirmPasswordController,
-              obscureText: !_isPasswordVisible,
-              decoration: InputDecoration(
-                labelText: "Konfirmasi kata sandi",
-                hintText: "Konfirmasi kata sandimu",
-                prefixIcon: Icon(Icons.lock),
-                suffixIcon: IconButton(
-                  icon: Icon(_isPasswordVisible
-                      ? Icons.visibility
-                      : Icons.visibility_off),
-                  onPressed: _togglePasswordVisibility,
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/Additional/backgroundSign-In.png'),
+                  fit: BoxFit.cover,
                 ),
-                border: UnderlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 32),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: _register,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Welcome Back!",
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      _buildTextField(
+                          emailOrUsernameController, "Email or Username"),
+                      const SizedBox(height: 16),
+                      _buildTextField(passwordController, "Password",
+                          obscureText: !_isPasswordVisible),
+                      const SizedBox(height: 24),
+                      ElevatedButton(
+                        onPressed: () {
+                          final input = emailOrUsernameController.text;
+                          final password = passwordController.text;
+
+                          if (input.isEmpty || password.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Please fill in all fields."),
+                              ),
+                            );
+                          } else if ((input == savedEmail ||
+                              input == savedUsername) &&
+                              password == savedPassword) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeScreen()),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content:
+                                Text("Invalid email/username or password."),
+                              ),
+                            );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green.shade700,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 50, vertical: 15),
+                        ),
+                        child: const Text(
+                          "Sign In",
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/sign-up');
+                        },
+                        child: Text.rich(
+                          TextSpan(
+                            text: "Don't have an account? ",
+                            style: TextStyle(color: Colors.white),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Sign Up',
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                ),
-                child: const Text(
-                  "Registrasi",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildTextField(TextEditingController controller, String label,
+      {bool obscureText = false}) {
+    return TextField(
+      controller: controller,
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(),
+        filled: true,
+        fillColor: Colors.white,
+        suffixIcon: label == "Password"
+            ? IconButton(
+          icon: Icon(
+            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+          ),
+          onPressed: () {
+            setState(() {
+              _isPasswordVisible = !_isPasswordVisible;
+            });
+          },
+          tooltip: _isPasswordVisible ? "Hide Password" : "Show Password",
+        )
+            : null,
       ),
     );
   }

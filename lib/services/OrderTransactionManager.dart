@@ -1,6 +1,6 @@
 class OrderTransactionManager {
   static final OrderTransactionManager _instance =
-      OrderTransactionManager._internal();
+  OrderTransactionManager._internal();
   factory OrderTransactionManager() => _instance;
   OrderTransactionManager._internal();
 
