@@ -77,5 +77,13 @@ final Map<String, List<Map<String, String>>> storeProducts = {
       "availability": "Tersedia",
       "isNew": "true"
     },
+    {
+      "name": "Morning Glory Rare Pink",
+      "price": "Rp 45.000",
+      "discountPrice": "",
+      "image": "assets/Product/Flowers/MorningGloryRarePink.jpg",
+      "availability": "Tersedia",
+      "isNew": "true"
+    },
   ],
 };
