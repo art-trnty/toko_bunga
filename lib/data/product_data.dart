@@ -840,7 +840,836 @@ final Map<String, List<Map<String, String>>> storeProducts = {
       "importantInfo": "Menyukai tempat terang. Siram secara teratur."
     },
   ],
+  'EcoGarden': [
+    {
+      "name": "Tulip Merah",
+      "price": "Rp 45.000",
+      "discountPrice": "",
+      "image": "assets/Product/Flowers/TulipMerahhh.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description": "Tulip merah cerah yang menawan dan simbol cinta sejati.",
+      "importantInfo": "Membutuhkan sinar matahari penuh. Siram secukupnya."
+    },
+    {
+      "name": "Anggrek Putih",
+      "price": "Rp 80.000",
+      "discountPrice": "",
+      "image": "assets/Product/Flowers/AnggrekPutihh.jpg",
+      "availability": "Tersedia",
+      "rating": "4.9",
+      "salesRating": "5.0",
+      "description": "Anggrek putih yang elegan dan simbol kemurnian.",
+      "importantInfo":
+          "Menyukai tempat terang. Siram saat media tanam mulai kering."
+    },
+    {
+      "name": "Lavender Ungu",
+      "price": "Rp 50.000",
+      "discountPrice": "",
+      "image": "assets/Product/Flowers/LavenderUnguu.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description": "Lavender ungu dengan aroma yang menenangkan.",
+      "importantInfo": "Membutuhkan sinar matahari penuh. Siram secukupnya."
+    },
+    {
+      "name": "Mawar Kuning",
+      "price": "Rp 55.000",
+      "discountPrice": "Rp 50.000",
+      "image": "assets/Product/Flowers/MawarKuningg.jpg",
+      "availability": "Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description":
+          "Mawar kuning yang melambangkan persahabatan dan kegembiraan.",
+      "importantInfo": "Menyukai sinar matahari penuh. Siram secara teratur."
+    },
+    {
+      "name": "Dahlia Merah",
+      "price": "Rp 60.000",
+      "discountPrice": "",
+      "image": "assets/Product/Flowers/DahliaMerahhh.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description": "Dahlia merah yang indah dan mencolok.",
+      "importantInfo": "Membutuhkan sinar matahari penuh. Siram secara teratur."
+    },
+    {
+      "name": "Pot Tanaman",
+      "price": "Rp 25.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/PotTanaman.jpg",
+      "availability": "Tersedia",
+      "rating": "4.6",
+      "salesRating": "4.7",
+      "description": "Pot tanaman berbahan plastik yang ringan dan tahan lama.",
+      "importantInfo": "Ideal untuk berbagai jenis tanaman. Mudah dibersihkan."
+    },
+    {
+      "name": "Pupuk Organik",
+      "price": "Rp 30.000",
+      "discountPrice": "Rp 25.000",
+      "image": "assets/Product/Alat/PupukOrganik.jpg",
+      "availability": "Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description": "Pupuk organik alami untuk menyuburkan tanah dan tanaman.",
+      "importantInfo": "Aplikasikan secara merata di sekitar tanaman."
+    },
+    {
+      "name": "Alat Semprot Tanaman",
+      "price": "Rp 90.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/AST.jpg",
+      "availability": "Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description":
+          "Alat semprot multifungsi untuk menyiram dan menyemprot pupuk cair.",
+      "importantInfo": "Mudah digunakan dan tahan lama. Kapasitas 1 liter."
+    },
+    {
+      "name": "Vitamin Tanaman",
+      "price": "Rp 50.000",
+      "discountPrice": "Rp 45.000",
+      "image": "assets/Product/Alat/VitaminTanaman.jpg",
+      "availability": "Tersedia",
+      "rating": "4.9",
+      "salesRating": "5.0",
+      "description":
+          "Vitamin tanaman untuk meningkatkan pertumbuhan dan kesehatan tanaman.",
+      "importantInfo":
+          "Campurkan dengan air sesuai dosis. Berikan secara rutin."
+    },
+    {
+      "name": "Sarung Tangan Berkebun",
+      "price": "Rp 30.000",
+      "discountPrice": "Rp 25.000",
+      "image": "assets/Product/Alat/STB.jpg",
+      "availability": "Tersedia",
+      "rating": "4.5",
+      "salesRating": "4.6",
+      "description":
+          "Sarung tangan berkebun berbahan karet untuk melindungi tangan.",
+      "importantInfo": "Nyaman dipakai dan melindungi dari duri."
+    },
+  ],
+  'Nature Bloom': [
+    {
+      "name": "Sekop Mini",
+      "price": "Rp 30.000",
+      "discountPrice": "Rp 25.000",
+      "image": "assets/Product/Alat/SekopMini.jpg",
+      "availability": "Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description":
+          "Sekop mini untuk membantu proses menanam dan memindahkan tanaman.",
+      "importantInfo": "Bahan stainless steel yang tahan lama."
+    },
+    {
+      "name": "Obat Anti Hama",
+      "price": "Rp 35.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/ObatAntiHama.jpg",
+      "availability": "Tersedia",
+      "rating": "4.6",
+      "salesRating": "4.7",
+      "description": "Obat anti hama untuk melindungi tanaman dari serangga.",
+      "importantInfo": "Gunakan sesuai petunjuk pada kemasan."
+    },
+    {
+      "name": "Gunting Tanaman",
+      "price": "Rp 75.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/GuntingTanaman.jpg",
+      "availability": "Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description": "Gunting tanaman berkualitas tinggi untuk pemangkasan.",
+      "importantInfo": "Tajam dan ergonomis. Mudah digunakan."
+    },
+    {
+      "name": "Benih Bunga Matahari",
+      "price": "Rp 30.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/BenihBungaMatahari.webp",
+      "availability": "Tidak Tersedia",
+      "rating": "4.5",
+      "salesRating": "4.6",
+      "description":
+          "Benih bunga matahari untuk menambah keindahan taman Anda.",
+      "importantInfo": "Tanam di tempat dengan sinar matahari penuh."
+    },
+    {
+      "name": "Penyiram Tanaman",
+      "price": "Rp 35.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/PenyiramTanaman.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.6",
+      "salesRating": "4.7",
+      "description": "Penyiram tanaman manual dengan kapasitas 2 liter.",
+      "importantInfo": "Ideal untuk tanaman indoor dan outdoor."
+    },
+    {
+      "name": "Kompos Cair",
+      "price": "Rp 80.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/KomposCair.jpg",
+      "availability": "Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description": "Kompos cair organik untuk menyuburkan tanah dan tanaman.",
+      "importantInfo": "Gunakan setiap dua minggu sekali untuk hasil maksimal."
+    },
+    {
+      "name": "Peralatan Berkebun",
+      "price": "Rp 175.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/PeralatanBerkebun.jpg",
+      "availability": "Tersedia",
+      "rating": "4.9",
+      "salesRating": "4.8",
+      "description": "Peralatan Berkebun untuk melengkapi alat-alat berkebun.",
+      "importantInfo": "Gunakan sesuai kebutuhan."
+    },
+    {
+      "name": "Baja Kompos",
+      "price": "Rp 65.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/BajaKompos.jpg",
+      "availability": "Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description":
+          "Kompos alami yang memperkaya tanah dan meningkatkan pertumbuhan tanaman.",
+      "importantInfo": "Taburkan di sekitar tanaman setiap bulan."
+    },
+    {
+      "name": "Pupuk Kandang",
+      "price": "Rp 40.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/PupukKandang.jpg",
+      "availability": "Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description": "Pupuk organik dari kotoran hewan yang kaya nutrisi.",
+      "importantInfo": "Campurkan dengan tanah sebelum menanam."
+    },
+    {
+      "name": "Benih Kaktus",
+      "price": "Rp 45.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/BenihKaktus.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.6",
+      "salesRating": "4.7",
+      "description": "Benih kaktus yang mudah tumbuh dan tahan lama.",
+      "importantInfo": "Tanam di media berpasir dan tempatkan di tempat terang."
+    },
+  ],
+  'Fresh Garden': [
+    {
+      "name": "Kantong Tanah",
+      "price": "Rp 30.000",
+      "discountPrice": "Rp 25.000",
+      "image": "assets/Product/Alat/KantongTanah.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description": "Kantong tanah siap pakai untuk berbagai jenis tanaman.",
+      "importantInfo": "Gunakan langsung untuk menanam bunga atau sayuran."
+    },
+    {
+      "name": "Pupuk Cair",
+      "price": "Rp 50.000",
+      "discountPrice": "Rp 45.000",
+      "image": "assets/Product/Alat/PupukCair.jpg",
+      "availability": "Tersedia",
+      "rating": "4.9",
+      "salesRating": "5.0",
+      "description":
+          "Pupuk cair organik untuk mempercepat pertumbuhan tanaman.",
+      "importantInfo":
+          "Campurkan dengan air dan siramkan ke tanaman setiap minggu."
+    },
+    {
+      "name": "Mulsa Organik",
+      "price": "Rp 25.000",
+      "discountPrice": "Rp 20.000",
+      "image": "assets/Product/Alat/MulsaOrganik.jpg",
+      "availability": "Tersedia",
+      "rating": "4.6",
+      "salesRating": "4.7",
+      "description":
+          "Mulsa organik untuk menjaga kelembaban tanah dan mengurangi gulma.",
+      "importantInfo": "Sebarkan di permukaan tanah sekitar tanaman."
+    },
+    {
+      "name": "Penyemprot Otomatis",
+      "price": "Rp 75.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/PenyemprotOtomatis.jpg",
+      "availability": "Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description":
+          "Penyemprot otomatis dengan kapasitas besar dan efisiensi tinggi.",
+      "importantInfo": "Cocok untuk penyiraman skala besar."
+    },
+    {
+      "name": "Baja Serbuk",
+      "price": "Rp 45.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/BajaSerbuk.jpg",
+      "availability": "Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description": "Baja serbuk untuk meningkatkan kesuburan tanah.",
+      "importantInfo": "Gunakan secara teratur untuk hasil optimal."
+    },
+    {
+      "name": "Benih Bonsai",
+      "price": "Rp 60.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/BenihBonsai.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description": "Benih bonsai untuk Anda yang ingin memulai seni bonsai.",
+      "importantInfo": "Tanam di pot kecil dengan drainase baik."
+    },
+    {
+      "name": "Keranjang Tanam",
+      "price": "Rp 30.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/KeranjangTanam.jpg",
+      "availability": "Tersedia",
+      "rating": "4.6",
+      "salesRating": "4.7",
+      "description": "Keranjang tanam praktis untuk menanam sayur dan bunga.",
+      "importantInfo": "Ideal untuk penggunaan indoor dan outdoor."
+    },
+    {
+      "name": "Alat Cangkul",
+      "price": "Rp 55.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/AlatCangkul.jpg",
+      "availability": "Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description": "Alat cangkul berkualitas untuk menggemburkan tanah.",
+      "importantInfo": "Pegangan ergonomis untuk kenyamanan penggunaan."
+    },
+    {
+      "name": "Pupuk Kandang Cair",
+      "price": "Rp 45.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/PupukKandangCair.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description":
+          "Pupuk kandang cair yang mudah digunakan dan kaya nutrisi.",
+      "importantInfo":
+          "Larutkan dalam air dan siramkan ke tanaman setiap dua minggu."
+    },
+    {
+      "name": "Benih Lavender",
+      "price": "Rp 25.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/BenihLavender.jpg",
+      "availability": "Tersedia",
+      "rating": "4.6",
+      "salesRating": "4.7",
+      "description":
+          "Benih lavender untuk keindahan dan aroma harum di taman Anda.",
+      "importantInfo": "Tanam di tempat yang mendapatkan sinar matahari penuh."
+    },
+  ],
+  'Florania': [
+    {
+      "name": "Sprayer Elektrik",
+      "price": "Rp 90.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/SprayerElektrik.jpg",
+      "availability": "Tersedia",
+      "rating": "4.9",
+      "salesRating": "5.0",
+      "description":
+          "Sprayer elektrik dengan baterai tahan lama untuk penyemprotan tanaman.",
+      "importantInfo": "Mudah digunakan dan hemat energi."
+    },
+    {
+      "name": "Humus Tanah",
+      "price": "Rp 35.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/HumusTanah.jpg",
+      "availability": "Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description":
+          "Humus tanah untuk meningkatkan kualitas dan struktur tanah.",
+      "importantInfo": "Campurkan dengan tanah sebelum menanam."
+    },
+    {
+      "name": "Baja Slow Release",
+      "price": "Rp 40.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/BajaSlowRelease.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description":
+          "Baja slow release yang memberikan nutrisi jangka panjang untuk tanaman.",
+      "importantInfo": "Aplikasikan sekali setiap tiga bulan."
+    },
+    {
+      "name": "Benih Marigold",
+      "price": "Rp 50.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/BenihMarigold.jpg",
+      "availability": "Tersedia",
+      "rating": "4.5",
+      "salesRating": "4.6",
+      "description": "Benih marigold yang cerah untuk mempercantik taman Anda.",
+      "importantInfo": "Tanam di tempat yang mendapatkan banyak sinar matahari."
+    },
+    {
+      "name": "Gembor Taman",
+      "price": "Rp 50.000",
+      "discountPrice": "Rp 45.000",
+      "image": "assets/Product/Alat/GemborTaman.jpg",
+      "availability": "Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description":
+          "Gembor taman dengan desain ergonomis untuk penyiraman yang efisien.",
+      "importantInfo": "Tahan lama dan mudah digunakan."
+    },
+    {
+      "name": "Benih Bayam",
+      "price": "Rp 20.000",
+      "discountPrice": "Rp 10.000",
+      "image": "assets/Product/Alat/BenihBayam.jpg",
+      "availability": "Tersedia",
+      "rating": "4.5",
+      "salesRating": "4.6",
+      "description": "Benih bayam untuk kebun sayur sehat Anda.",
+      "importantInfo": "Tanam di tanah gembur dan siram secara teratur."
+    },
+    {
+      "name": "Obat Pengendali Gulma",
+      "price": "Rp 55.000",
+      "discountPrice": "Rp 50.000",
+      "image": "assets/Product/Alat/ObatPengendaliGulma.jpg",
+      "availability": "Tersedia",
+      "rating": "4.6",
+      "salesRating": "4.7",
+      "description":
+          "Obat pengendali gulma yang efektif untuk menjaga kebun bebas gulma.",
+      "importantInfo": "Gunakan sesuai petunjuk pada kemasan."
+    },
+    {
+      "name": "Pot Bunga Kecil",
+      "price": "Rp 20.000",
+      "discountPrice": "Rp 15.000",
+      "image": "assets/Product/Alat/PotBungaKecil.jpg",
+      "availability": "Tersedia",
+      "rating": "4.5",
+      "salesRating": "4.6",
+      "description": "Pot bunga kecil yang cocok untuk tanaman hias kecil.",
+      "importantInfo": "Ideal untuk tanaman indoor dan outdoor."
+    },
+    {
+      "name": "Cangkir Tanam",
+      "price": "Rp 25.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/CangkirTanam.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description": "Cangkir tanam unik untuk tanaman mini Anda.",
+      "importantInfo": "Cocok untuk dekorasi meja dan rak."
+    },
+    {
+      "name": "Benih Mawar",
+      "price": "Rp 30.000",
+      "discountPrice": "Rp 25.000",
+      "image": "assets/Product/Alat/BenihMawar.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description": "Benih mawar berkualitas tinggi untuk taman Anda.",
+      "importantInfo": "Tanam di tanah yang subur dan sinar matahari cukup."
+    },
+  ],
+  'GreenVista': [
+    {
+      "name": "Vitamin Tanaman",
+      "price": "Rp 50.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/VitaminTanamann.jpg",
+      "availability": "Tersedia",
+      "rating": "4.9",
+      "salesRating": "5.0",
+      "description": "Vitamin khusus untuk memperkuat tanaman Anda.",
+      "importantInfo": "Tambahkan ke air penyiraman setiap minggu."
+    },
+    {
+      "name": "Benih Tulip",
+      "price": "Rp 40.000",
+      "discountPrice": "Rp 30.000",
+      "image": "assets/Product/Alat/BenihTulip.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description": "Benih tulip warna-warni untuk memperindah taman Anda.",
+      "importantInfo": "Tanam di tempat yang sejuk dan cukup sinar matahari."
+    },
+    {
+      "name": "Alat Penyiram Tanaman",
+      "price": "Rp 60.000",
+      "discountPrice": "Rp 55.000",
+      "image": "assets/Product/Alat/AlatPenyiramTanaman.jpg",
+      "availability": "Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description":
+          "Alat penyiram tanaman dengan tekanan air yang bisa diatur.",
+      "importantInfo":
+          "Mudah digunakan dan cocok untuk berbagai ukuran tanaman."
+    },
+    {
+      "name": "Obat Anti Hama",
+      "price": "Rp 45.000",
+      "discountPrice": "Rp 40.000",
+      "image": "assets/Product/Alat/ObatAntiHamaa.jpg",
+      "availability": "Tersedia",
+      "rating": "4.6",
+      "salesRating": "4.7",
+      "description": "Obat anti hama efektif untuk melindungi tanaman Anda.",
+      "importantInfo": "Gunakan sesuai instruksi untuk hasil terbaik."
+    },
+    {
+      "name": "Pupuk Kompos Cair",
+      "price": "Rp 50.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/PupukKomposCair.jpg",
+      "availability": "Tersedia",
+      "rating": "4.9",
+      "salesRating": "5.0",
+      "description": "Pupuk kompos cair untuk meningkatkan kesuburan tanah.",
+      "importantInfo": "Campurkan dengan air dan gunakan setiap dua minggu."
+    },
+    {
+      "name": "Benih Anggrek",
+      "price": "Rp 40.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/BenihAnggrek.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description": "Benih anggrek eksklusif untuk koleksi tanaman Anda.",
+      "importantInfo": "Tanam di media khusus anggrek dengan drainase baik."
+    },
+    {
+      "name": "Pot Gantung",
+      "price": "Rp 45.000",
+      "discountPrice": "Rp 40.000",
+      "image": "assets/Product/Alat/PotGantung.jpg",
+      "availability": "Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description":
+          "Pot gantung cantik untuk memperindah teras atau balkon Anda.",
+      "importantInfo": "Cocok untuk tanaman rambat dan tanaman hias kecil."
+    },
+    {
+      "name": "Benih Melati",
+      "price": "Rp 70.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/BenihMelati.jpg",
+      "availability": "Tersedia",
+      "rating": "4.6",
+      "salesRating": "4.7",
+      "description": "Benih melati harum yang indah untuk taman Anda.",
+      "importantInfo": "Tanam di tempat yang mendapat sinar matahari penuh."
+    },
+    {
+      "name": "Sekop Tangan",
+      "price": "Rp 35.000",
+      "discountPrice": "Rp 30.000",
+      "image": "assets/Product/Alat/SekopTangan.jpg",
+      "availability": "Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description": "Sekop tangan ringan dan kuat untuk berkebun.",
+      "importantInfo": "Pegangan ergonomis untuk kenyamanan saat digunakan."
+    },
+    {
+      "name": "Media Tanam Organik",
+      "price": "Rp 30.000",
+      "discountPrice": "Rp 25.000",
+      "image": "assets/Product/Alat/MediaTanamOrganik.jpg",
+      "availability": "Tersedia",
+      "rating": "4.6",
+      "salesRating": "4.7",
+      "description": "Media tanam organik untuk berbagai jenis tanaman.",
+      "importantInfo": "Siap pakai dan bebas dari bahan kimia berbahaya."
+    },
+  ],
+  'GreenLeaf': [
+    {
+      "name": "Pupuk Daun",
+      "price": "Rp 40.000",
+      "discountPrice": "Rp 35.000",
+      "image": "assets/Product/Alat/PupukDaun.jpg",
+      "availability": "Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description":
+          "Pupuk daun untuk mempercepat pertumbuhan dan kesehatan daun.",
+      "importantInfo": "Semprotkan langsung ke daun setiap dua minggu."
+    },
+    {
+      "name": "Benih Sunflower",
+      "price": "Rp 20.000",
+      "discountPrice": "Rp 15.000",
+      "image": "assets/Product/Alat/BenihSunflower.jpg",
+      "availability": "Tersedia",
+      "rating": "4.5",
+      "salesRating": "4.6",
+      "description": "Benih sunflower yang mudah tumbuh dan menyenangkan.",
+      "importantInfo": "Tanam di tempat yang mendapatkan sinar matahari penuh."
+    },
+    {
+      "name": "Pupuk Organik Padat",
+      "price": "Rp 50.000",
+      "discountPrice": "Rp 45.000",
+      "image": "assets/Product/Alat/PupukOrganikPadat.jpg",
+      "availability": "Tersedia",
+      "rating": "4.9",
+      "salesRating": "5.0",
+      "description": "Pupuk organik padat untuk memperbaiki struktur tanah.",
+      "importantInfo": "Gunakan setiap bulan untuk hasil maksimal."
+    },
+    {
+      "name": "Benih Pakis",
+      "price": "Rp 45.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/BenihPakis.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.6",
+      "salesRating": "4.7",
+      "description": "Benih pakis untuk menambah keasrian taman Anda.",
+      "importantInfo": "Tanam di tempat yang teduh dengan kelembaban tinggi."
+    },
+    {
+      "name": "Alat Pemangkas Tanaman",
+      "price": "Rp 70.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/AlatPemangkasTanaman.jpg",
+      "availability": "Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description":
+          "Alat pemangkas tanaman untuk menjaga bentuk tanaman Anda.",
+      "importantInfo": "Mudah digunakan dan tahan lama."
+    },
+    {
+      "name": "Benih Zinnia",
+      "price": "Rp 30.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/BenihZinnia.jpg",
+      "availability": "Tersedia",
+      "rating": "4.5",
+      "salesRating": "4.6",
+      "description": "Benih zinnia dengan bunga cerah dan berwarna-warni.",
+      "importantInfo": "Tanam di tanah yang subur dan sinar matahari penuh."
+    },
+    {
+      "name": "Obat Anti Jamur",
+      "price": "Rp 35.000",
+      "discountPrice": "Rp 30.000",
+      "image": "assets/Product/Alat/ObatAntiJamur.jpg",
+      "availability": "Tersedia",
+      "rating": "4.6",
+      "salesRating": "4.7",
+      "description":
+          "Obat anti jamur untuk melindungi tanaman dari penyakit jamur.",
+      "importantInfo": "Gunakan secara berkala untuk hasil terbaik."
+    },
+    {
+      "name": "Mawar Biru",
+      "price": "Rp 60.000",
+      "discountPrice": "",
+      "image": "assets/Product/Flowers/MawarBiru.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description": "Mawar biru langka yang menambah keindahan taman Anda.",
+      "importantInfo":
+          "Tanam di tempat yang cukup sinar matahari dan air secukupnya."
+    },
+    {
+      "name": "Bunga Dahlia",
+      "price": "Rp 35.000",
+      "discountPrice": "",
+      "image": "assets/Product/Flowers/BungaDahlia.jpg",
+      "availability": "Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description": "Bunga dahlia yang berwarna cerah dan menarik perhatian.",
+      "importantInfo":
+          "Siram secara teratur dan letakkan di tempat yang mendapat sinar matahari cukup."
+    },
+    {
+      "name": "Lili Putih",
+      "price": "Rp 50.000",
+      "discountPrice": "",
+      "image": "assets/Product/Flowers/LiliPutihh.jpg",
+      "availability": "Tersedia",
+      "rating": "4.9",
+      "salesRating": "5.0",
+      "description":
+          "Lili putih yang elegan dan harum, cocok untuk dekorasi rumah.",
+      "importantInfo":
+          "Tanam di tempat yang teduh dengan kelembaban yang cukup."
+    },
+  ],
+  'Fresh Botanics': [
+    {
+      "name": "Bunga Kamboja",
+      "price": "Rp 40.000",
+      "discountPrice": "Rp 35.000",
+      "image": "assets/Product/Flowers/BungaKamboja.jpg",
+      "availability": "Tersedia",
+      "rating": "4.6",
+      "salesRating": "4.7",
+      "description":
+          "Bunga kamboja dengan warna-warna lembut yang menenangkan.",
+      "importantInfo":
+          "Cocok untuk taman tropis dan membutuhkan sinar matahari penuh."
+    },
+    {
+      "name": "Benih Lavender",
+      "price": "Rp 25.000",
+      "discountPrice": "Rp 20.000",
+      "image": "assets/Product/Alat/BenihLavender.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description":
+          "Benih lavender yang harum dan menenangkan, cocok untuk kebun Anda.",
+      "importantInfo": "Tanam di tanah yang kering dan berdrainase baik."
+    },
+    {
+      "name": "Bunga Kaktus",
+      "price": "Rp 30.000",
+      "discountPrice": "",
+      "image": "assets/Product/Flowers/BungaKaktus.jpg",
+      "availability": "Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description": "Bunga kaktus yang eksotis dan mudah dirawat.",
+      "importantInfo":
+          "Hanya membutuhkan penyiraman minimal dan sinar matahari penuh."
+    },
+    {
+      "name": "Benih Marigold",
+      "price": "Rp 20.000",
+      "discountPrice": "",
+      "image": "assets/Product/Alat/BenihMarigold.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.5",
+      "salesRating": "4.6",
+      "description": "Benih marigold dengan bunga berwarna cerah dan menarik.",
+      "importantInfo": "Siram secara teratur dan tanam di tanah yang subur."
+    },
+    {
+      "name": "Bunga Anggrek Bulan",
+      "price": "Rp 70.000",
+      "discountPrice": "Rp 65.000",
+      "image": "assets/Product/Flowers/BungaAnggrekBulan.jpg",
+      "availability": "Tersedia",
+      "rating": "4.9",
+      "salesRating": "5.0",
+      "description": "Bunga anggrek bulan yang elegan dan mewah.",
+      "importantInfo":
+          "Cocok untuk indoor dengan sinar matahari tidak langsung."
+    },
+    {
+      "name": "Benih Bunga Matahari",
+      "price": "Rp 15.000",
+      "discountPrice": "=",
+      "image": "assets/Product/Alat/BenihBungaMatahari.jpg",
+      "availability": "Tidak Tersedia",
+      "rating": "4.4",
+      "salesRating": "4.5",
+      "description": "Benih bunga matahari yang mudah tumbuh dan ceria.",
+      "importantInfo":
+          "Tanam di tempat yang mendapatkan sinar matahari penuh sepanjang hari."
+    },
+    {
+      "name": "Bunga Hortensia",
+      "price": "Rp 55.000",
+      "discountPrice": "",
+      "image": "assets/Product/Flowers/BungaHortensia.jpg",
+      "availability": "Tersedia",
+      "rating": "4.7",
+      "salesRating": "4.8",
+      "description":
+          "Bunga hortensia dengan bunga-bunga besar dan berwarna cerah.",
+      "importantInfo": "Siram secara teratur dan letakkan di tempat yang teduh."
+    },
+    {
+      "name": "Benih Peony",
+      "price": "Rp 45.000",
+      "discountPrice": "Rp 40.000",
+      "image": "assets/Product/Alat/BenihPeony.jpg",
+      "availability": "Tersedia",
+      "rating": "4.6",
+      "salesRating": "4.7",
+      "description": "Benih peony dengan bunga yang besar dan harum.",
+      "importantInfo":
+          "Tanam di tanah yang subur dan sinar matahari yang cukup."
+    },
+    {
+      "name": "Bunga Begonia",
+      "price": "Rp 35.000",
+      "discountPrice": "Rp 30.000",
+      "image": "assets/Product/Flowers/BungaBegonia.jpg",
+      "availability": "Tersedia",
+      "rating": "4.5",
+      "salesRating": "4.6",
+      "description": "Bunga begonia yang berwarna cerah dan indah.",
+      "importantInfo":
+          "Cocok untuk area yang teduh dengan kelembaban yang cukup."
+    },
+    {
+      "name": "Bunga Gladiol",
+      "price": "Rp 50.000",
+      "discountPrice": "Rp 45.000",
+      "image": "assets/Product/Flowers/BungaGladiol.jpg",
+      "availability": "Tersedia",
+      "rating": "4.8",
+      "salesRating": "4.9",
+      "description":
+          "Bunga gladiol yang tinggi dan elegan, menambah keindahan taman Anda.",
+      "importantInfo":
+          "Siram secara teratur dan tanam di tempat yang mendapatkan sinar matahari penuh."
+    },
+  ],
 };
+// '': [
+
+//],
 //      "image": "assets/Product/Flowers/.jpg",
 
 List<Map<String, String>> getProductsForStore(String storeName) {

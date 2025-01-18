@@ -53,29 +53,11 @@ flutter:
     - assets/Store/EcoGarden.jpg
     - assets/Store/NatureBloom.jpg
     - assets/Store/FreshGarden.jpg
-    - assets/Store/FreshFlower.jpg
     - assets/Store/Florania.jpg
     - assets/Store/GreenVista.jpg
     - assets/Store/GreenLeaf.jpg
     - assets/Store/FreshBotanics.jpg
-    - assets/Store/FloralDreams.jpg
-    - assets/Store/NatureHaven.jpg
-    - assets/Store/BlossomSquare.jpg
-    - assets/Store/GreenFlora.jpg
-    - assets/Store/UrbanJungle.jpg
-    - assets/Store/NatureLove.jpg
-    - assets/Store/LushHaven.jpg
-    - assets/Store/FreshGarden.jpg
-    - assets/Store/GreenParadise.jpg
-    - assets/Store/FloraRia.jpg
-    - assets/Store/NidiraFlorist.jpg
-    - assets/Store/KadoPlus.jpg
-    - assets/Store/pinusFlorist.jpg
-    - assets/Store/TheMillionBloom.jpg
-    - assets/Store/NesiaFlorist.jpg
-    - assets/Store/RizCreations.jpg
-    - assets/Store/Prestisa.jpg
-    - assets/Store/FlowerAdvisor.jpg
+
 
     #Product
     - assets/Product/Flowers/MawarMerah.jpg
@@ -157,17 +139,83 @@ flutter:
     - assets/Product/Flowers/PeonyPinkk.jpg
     - assets/Product/Flowers/ZinniaWarna-warni.jpg
     - assets/Product/Flowers/RanunculusMerah.jpg
+    - assets/Product/Flowers/TulipMerahhh.jpg
+    - assets/Product/Flowers/AnggrekPutihh.jpg
+    - assets/Product/Flowers/LavenderUnguu.jpg
+    - assets/Product/Flowers/MawarKuningg.jpg
+    - assets/Product/Flowers/DahliaMerahhh.jpg
+    - assets/Product/Flowers/MawarBiru.jpg
+    - assets/Product/Flowers/BungaDahlia.jpg
+    - assets/Product/Flowers/LiliPutihh.jpg
+    - assets/Product/Flowers/BungaKamboja.jpg
+    - assets/Product/Flowers/BungaKaktus.jpg
+    - assets/Product/Flowers/BungaAnggrekBulan.jpg
+    - assets/Product/Flowers/BungaHortensia.jpg
+    - assets/Product/Flowers/BungaBegonia.jpg
+    - assets/Product/Flowers/BungaGladiol.jpg
 
   #- assets/Product/Flowers/.jpg
 
-
-
-
-    #    - assets/Product/Flowers.jpg
-
-
+#Alat
     - assets/Product/Alat/PotBunga.jpg
+    - assets/Product/Alat/STB.jpg
+    - assets/Product/Alat/VitaminTanaman.jpg
+    - assets/Product/Alat/AST.jpg
+    - assets/Product/Alat/PupukOrganik.jpg
+    - assets/Product/Alat/PotTanaman.jpg
+    - assets/Product/Alat/SekopMini.jpg
+    - assets/Product/Alat/ObatAntiHama.jpg
+    - assets/Product/Alat/GuntingTanaman.jpg
+    - assets/Product/Alat/BenihBungaMatahari.webp
+    - assets/Product/Alat/PenyiramTanaman.jpg
+    - assets/Product/Alat/KomposCair.jpg
+    - assets/Product/Alat/PeralatanBerkebun.jpg
+    - assets/Product/Alat/BenihKaktus.jpg
+    - assets/Product/Alat/PupukKandang.jpg
+    - assets/Product/Alat/BajaKompos.jpg
+    - assets/Product/Alat/KantongTanah.jpg
+    - assets/Product/Alat/PupukCair.jpg
+    - assets/Product/Alat/MulsaOrganik.jpg
+    - assets/Product/Alat/PenyemprotOtomatis.jpg
+    - assets/Product/Alat/BajaSerbuk.jpg
+    - assets/Product/Alat/BenihBonsai.jpg
+    - assets/Product/Alat/KeranjangTanam.jpg
+    - assets/Product/Alat/AlatCangkul.jpg
+    - assets/Product/Alat/PupukKandangCair.jpg
+    - assets/Product/Alat/BenihLavender.jpg
+    - assets/Product/Alat/SprayerElektrik.jpg
+    - assets/Product/Alat/HumusTanah.jpg
+    - assets/Product/Alat/BajaSlowRelease.jpg
+    - assets/Product/Alat/BenihMarigold.jpg
+    - assets/Product/Alat/GemborTaman.jpg
+    - assets/Product/Alat/BenihBayam.jpg
+    - assets/Product/Alat/ObatPengendaliGulma.jpg
+    - assets/Product/Alat/PotBungaKecil.jpg
+    - assets/Product/Alat/CangkirTanam.jpg
+    - assets/Product/Alat/BenihMawar.jpg
+    - assets/Product/Alat/VitaminTanamann.jpg
+    - assets/Product/Alat/BenihTulip.jpg
+    - assets/Product/Alat/AlatPenyiramTanaman.jpg
+    - assets/Product/Alat/ObatAntiHamaa.jpg
+    - assets/Product/Alat/PupukKomposCair.jpg
+    - assets/Product/Alat/BenihAnggrek.jpg
+    - assets/Product/Alat/PotGantung.jpg
+    - assets/Product/Alat/BenihMelati.jpg
+    - assets/Product/Alat/SekopTangan.jpg
+    - assets/Product/Alat/MediaTanamOrganik.jpg
+    - assets/Product/Alat/PupukDaun.jpg
+    - assets/Product/Alat/BenihSunflower.jpg
+    - assets/Product/Alat/PupukOrganikPadat.jpg
+    - assets/Product/Alat/BenihPakis.jpg
+    - assets/Product/Alat/AlatPemangkasTanaman.jpg
+    - assets/Product/Alat/BenihZinnia.jpg
+    - assets/Product/Alat/ObatAntiJamur.jpg
+    - assets/Product/Alat/BenihPeony.jpg
+    - assets/Product/Alat/BenihBungaMatahari.jpg
+    - assets/Product/Alat/BenihMarigoldd.jpg
+    - assets/Product/Alat/BenihLavenderr.jpg
 
+  #  - assets/Product/Alat/.jpg
 
 
 
