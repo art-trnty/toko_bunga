@@ -124,32 +124,54 @@ class _NewProductScreenState extends State<NewProductScreen> {
           SizedBox(width: 16),
         ],
       ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(16.0),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-          childAspectRatio: 0.7,
-        ),
-        itemCount: newProducts.length,
-        itemBuilder: (context, index) {
-          return ProductCard(
-            name: newProducts[index]["name"]!,
-            price: newProducts[index]["price"]!,
-            imageUrl: newProducts[index]["image"]!,
-            availability: newProducts[index]["availability"]!,
-            onAddToCart: () {
-              addToCart(newProducts[index]);
-            },
-            onAddToFavorite: () {
-              addToFavorite(newProducts[index]);
-            },
-            quantity: 0,
-            isFavorite: favoriteProducts.contains(newProducts[index]),
-          );
-        },
-      ),
+      body: newProducts.isEmpty
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.info_outline,
+                    size: 50,
+                    color: Colors.grey,
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    'No New Products Available',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
+                  ),
+                ],
+              ),
+            )
+          : GridView.builder(
+              padding: const EdgeInsets.all(16.0),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                childAspectRatio: 0.7,
+              ),
+              itemCount: newProducts.length,
+              itemBuilder: (context, index) {
+                return ProductCard(
+                  name: newProducts[index]["name"]!,
+                  price: newProducts[index]["price"]!,
+                  imageUrl: newProducts[index]["image"]!,
+                  availability: newProducts[index]["availability"]!,
+                  onAddToCart: () {
+                    addToCart(newProducts[index]);
+                  },
+                  onAddToFavorite: () {
+                    addToFavorite(newProducts[index]);
+                  },
+                  quantity: 0,
+                  isFavorite: favoriteProducts.contains(newProducts[index]),
+                );
+              },
+            ),
     );
   }
 }
