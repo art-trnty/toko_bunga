@@ -22,8 +22,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String address = savedAddress ?? "";
   String email = savedEmail ?? "";
   String phone = savedPhone ?? "";
-  File? _profileImage;
-  String _imageFile = '';
+  String _imageFile = ''; // Path to saved profile image
   final picker = ImagePicker();
 
   @override
@@ -97,18 +96,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Future<void> _pickImage() async {
-    final ImagePicker picker = ImagePicker();
-    final XFile? pickedImage =
-        await picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedImage != null) {
-      setState(() {
-        _profileImage = File(pickedImage.path);
-      });
-    }
-  }
-
   void _updateProfile(String newEmail, String newPhone, String newAddress) {
     setState(() {
       email = newEmail;
@@ -152,8 +139,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Align(
                     alignment: Alignment.topCenter,
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 150), // Adjusted for header height
+                      padding: const EdgeInsets.only(top: 150),
                       child: Stack(
                         alignment: Alignment.bottomRight,
                         children: [
@@ -170,7 +156,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ? NetworkImage(_imageFile)
                                           : FileImage(File(_imageFile)))
                                       as ImageProvider
-                                  : AssetImage('assets/Addtional/Profile.png'),
+                                  : AssetImage('assets/additional/Profile.png'),
                             ),
                           ),
                           if (isSignedIn)
