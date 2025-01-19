@@ -10,7 +10,7 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController emailOrUsernameController =
-  TextEditingController();
+      TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool _isPasswordVisible = false;
 
@@ -68,7 +68,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        "Welcome Back!",
+                        "Welcome!",
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
@@ -94,7 +94,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                             );
                           } else if ((input == savedEmail ||
-                              input == savedUsername) &&
+                                  input == savedUsername) &&
                               password == savedPassword) {
                             Navigator.push(
                               context,
@@ -105,7 +105,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content:
-                                Text("Invalid email/username or password."),
+                                    Text("Invalid email/username or password."),
                               ),
                             );
                           }
@@ -164,16 +164,16 @@ class _SignInScreenState extends State<SignInScreen> {
         fillColor: Colors.white,
         suffixIcon: label == "Password"
             ? IconButton(
-          icon: Icon(
-            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-          ),
-          onPressed: () {
-            setState(() {
-              _isPasswordVisible = !_isPasswordVisible;
-            });
-          },
-          tooltip: _isPasswordVisible ? "Hide Password" : "Show Password",
-        )
+                icon: Icon(
+                  _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _isPasswordVisible = !_isPasswordVisible;
+                  });
+                },
+                tooltip: _isPasswordVisible ? "Hide Password" : "Show Password",
+              )
             : null,
       ),
     );

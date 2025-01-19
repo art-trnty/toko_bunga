@@ -159,7 +159,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.red, width: 5),
+                              border: Border.all(
+                                  color: Colors.deepPurple, width: 3),
                               shape: BoxShape.circle,
                             ),
                             child: CircleAvatar(
