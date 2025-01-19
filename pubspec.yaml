@@ -32,6 +32,8 @@ flutter:
   assets:
 
     #Additional
+
+    - assets/Additional/Profile.png
     - assets/Additional/Flowers.jpg
     - assets/Additional/backgroundSign-In.png
     - assets/Additional/backgroundSign-Up.png

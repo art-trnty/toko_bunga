@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toko_bunga/main.dart';
 import 'package:toko_bunga/screens/AdditionalFeaturesScreen/EditProfileScreen.dart';
 import 'package:toko_bunga/screens/PaymentScreen/OrderTransactionsScreen.dart';
@@ -21,11 +23,84 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String email = savedEmail ?? "";
   String phone = savedPhone ?? "";
   File? _profileImage;
+  String _imageFile = '';
+  final picker = ImagePicker();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadImage();
+  }
+
+  // Load the saved image path from SharedPreferences
+  Future<void> _loadImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _imageFile = prefs.getString('imagePath') ?? '';
+    });
+  }
+
+  // Save the image path to SharedPreferences
+  Future<void> _saveImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('imagePath', _imageFile);
+  }
+
+  // Select image from camera or gallery
+  Future<void> _getImage(ImageSource source) async {
+    try {
+      final pickedFile = await picker.pickImage(
+        source: source,
+        maxHeight: 720,
+        maxWidth: 720,
+        imageQuality: 80,
+      );
+      if (pickedFile != null) {
+        setState(() {
+          _imageFile = pickedFile.path;
+        });
+        _saveImage();
+      } else {
+        debugPrint('No image selected.');
+      }
+    } catch (e) {
+      debugPrint('Error picking image: $e');
+    }
+  }
+
+  // Show image picker options
+  void _showPicker() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Wrap(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.camera, color: Colors.green),
+              title: const Text('Camera'),
+              onTap: () {
+                Navigator.of(context).pop();
+                _getImage(ImageSource.camera);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.photo_library, color: Colors.green),
+              title: const Text('Gallery'),
+              onTap: () {
+                Navigator.of(context).pop();
+                _getImage(ImageSource.gallery);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? pickedImage =
-    await picker.pickImage(source: ImageSource.gallery);
+        await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedImage != null) {
       setState(() {
@@ -43,7 +118,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void _logOut(BuildContext context) {
-    // Add your log-out logic here
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => SignInScreen()),
@@ -85,23 +159,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.green, width: 2),
+                              border: Border.all(color: Colors.red, width: 5),
                               shape: BoxShape.circle,
                             ),
                             child: CircleAvatar(
                               radius: 50,
-                              backgroundImage: _profileImage != null
-                                  ? FileImage(_profileImage!)
-                                  : AssetImage('assets/images/profile.jpg')
-                              as ImageProvider,
+                              backgroundImage: _imageFile.isNotEmpty
+                                  ? (kIsWeb
+                                          ? NetworkImage(_imageFile)
+                                          : FileImage(File(_imageFile)))
+                                      as ImageProvider
+                                  : AssetImage('assets/Addtional/Profile.png'),
                             ),
                           ),
                           if (isSignedIn)
                             IconButton(
-                              onPressed: _pickImage,
+                              onPressed: _showPicker,
                               icon: Icon(
-                                Icons.camera_alt,
-                                color: Colors.green[50],
+                                Icons.camera_alt_outlined,
+                                color: Colors.green,
                               ),
                             ),
                         ],
