@@ -28,43 +28,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    _loadImage();
+    _loadImage(); // Load latest image path
   }
 
   // Load the saved image path from SharedPreferences
+  Future<void> _saveImage(String path) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('profileImagePath', path);
+    debugPrint("Saved image path: $path");
+  }
+
   Future<void> _loadImage() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      _imageFile = prefs.getString('imagePath') ?? '';
+      _imageFile = prefs.getString('profileImagePath') ?? '';
+      debugPrint("Loaded image path: $_imageFile");
     });
-  }
-
-  // Save the image path to SharedPreferences
-  Future<void> _saveImage() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString('imagePath', _imageFile);
-  }
-
-  // Select image from camera or gallery
-  Future<void> _getImage(ImageSource source) async {
-    try {
-      final pickedFile = await picker.pickImage(
-        source: source,
-        maxHeight: 720,
-        maxWidth: 720,
-        imageQuality: 80,
-      );
-      if (pickedFile != null) {
-        setState(() {
-          _imageFile = pickedFile.path;
-        });
-        _saveImage();
-      } else {
-        debugPrint('No image selected.');
-      }
-    } catch (e) {
-      debugPrint('Error picking image: $e');
-    }
   }
 
   // Show image picker options
@@ -96,11 +75,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  void _updateProfile(String newEmail, String newPhone, String newAddress) {
+  // Select image from camera or gallery
+  Future<void> _getImage(ImageSource source) async {
+    try {
+      final pickedFile = await picker.pickImage(
+        source: source,
+        maxHeight: 720,
+        maxWidth: 720,
+        imageQuality: 80,
+      );
+      if (pickedFile != null) {
+        setState(() {
+          _imageFile = pickedFile.path;
+        });
+        await _saveImage(_imageFile); // Save image path
+        // Show a snackbar notification
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text('Profile picture updated successfully!')),
+        );
+      } else {
+        debugPrint('No image selected.');
+      }
+    } catch (e) {
+      debugPrint('Error picking image: $e');
+    }
+  }
+
+  void _updateProfile(String newFullname, newEmail, String newPhone,
+      String newAddress, String newImagePath) {
     setState(() {
+      fullName = newFullname;
       email = newEmail;
       phone = newPhone;
       address = newAddress;
+      _imageFile = newImagePath;
     });
   }
 
@@ -156,22 +165,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ? NetworkImage(_imageFile)
                                           : FileImage(File(_imageFile)))
                                       as ImageProvider
-                                  : AssetImage('assets/additional/Profile.png'),
+                                  : const AssetImage(
+                                      'assets/additional/Profile.png'),
                             ),
                           ),
                           if (isSignedIn)
                             IconButton(
                               onPressed: _showPicker,
-                              icon: Icon(
-                                Icons.camera_alt_outlined,
-                                color: Colors.green,
-                              ),
+                              icon: const Icon(Icons.camera_alt_outlined,
+                                  color: Colors.green),
                             ),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Divider(color: Colors.green[100]),
 
                   // Profile Info Section
@@ -183,40 +191,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         // Name & Job title
                         Text(
                           fullName,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 24, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 10),
-                        Text(
+                        const SizedBox(height: 10),
+                        const Text(
                           'User',
                           style: TextStyle(fontSize: 18, color: Colors.grey),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
 
                         // Contact Info
                         Card(
-                          margin: EdgeInsets.symmetric(vertical: 10),
+                          margin: const EdgeInsets.symmetric(vertical: 10),
                           child: ListTile(
-                            leading: Icon(Icons.email),
+                            leading: const Icon(Icons.email),
                             title: Text(email),
                           ),
                         ),
                         Card(
-                          margin: EdgeInsets.symmetric(vertical: 10),
+                          margin: const EdgeInsets.symmetric(vertical: 10),
                           child: ListTile(
-                            leading: Icon(Icons.phone),
+                            leading: const Icon(Icons.phone),
                             title: Text(phone),
                           ),
                         ),
                         // Alamat Info
                         Card(
-                          margin: EdgeInsets.symmetric(vertical: 10),
+                          margin: const EdgeInsets.symmetric(vertical: 10),
                           child: ListTile(
-                            leading: Icon(Icons.home),
+                            leading: const Icon(Icons.home),
                             title: Text(address),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
 
                         // Edit Profile Button
                         Row(
@@ -227,17 +235,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          OrderTransactionsScreen()),
+                                    builder: (context) =>
+                                        OrderTransactionsScreen(),
+                                  ),
                                 );
                               },
-                              child: Text('Order Transactions'),
+                              child: const Text('Order Transactions'),
                             ),
                             ElevatedButton(
                               onPressed: () {
                                 _navigateToEditProfile(context);
                               },
-                              child: Text('Edit Profile'),
+                              child: const Text('Edit Profile'),
                             ),
                             ElevatedButton(
                               onPressed: () {
@@ -246,7 +255,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 });
                                 _logOut(context);
                               },
-                              child: Text('Log Out'),
+                              child: const Text('Log Out'),
                             ),
                           ],
                         ),
@@ -267,14 +276,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context,
       MaterialPageRoute(
         builder: (context) => EditProfileScreen(
+          initialFullName: fullName,
           initialEmail: email,
           initialPhone: phone,
           initialAddress: address,
+          initialImagePath: _imageFile,
+          onUpdateProfile: (newImagePath) {
+            setState(() {
+              _imageFile = newImagePath;
+            });
+            _saveImage(newImagePath); // Simpan path gambar yang diperbarui
+          },
         ),
       ),
     );
-    if (result != null && result is Map<String, String>) {
-      _updateProfile(result['email']!, result['phone']!, result['address']!);
+
+    if (result != null && result is Map<String, dynamic>) {
+      setState(() {
+        fullName = result['fullName'];
+        email = result['email'];
+        phone = result['phone'];
+        address = result['address'];
+        _imageFile = result['imagePath'];
+      });
+
+      await _saveImage(_imageFile); // Simpan path gambar yang diperbarui
+      _loadImage(); // Memuat ulang gambar agar perubahan terlihat
     }
   }
 }
