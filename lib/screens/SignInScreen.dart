@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:toko_bunga/data/user_data.dart'
+    as userData; // Beri alias userData
 import 'package:toko_bunga/screens/HomeScreen.dart';
-import 'package:toko_bunga/main.dart';
+import 'package:toko_bunga/models/user.dart';
+import 'package:toko_bunga/main.dart'; // Mengimpor global variable loggedInUser
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -93,21 +96,39 @@ class _SignInScreenState extends State<SignInScreen> {
                                 content: Text("Please fill in all fields."),
                               ),
                             );
-                          } else if ((input == savedEmail ||
-                                  input == savedUsername) &&
-                              password == savedPassword) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomeScreen()),
-                            );
                           } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content:
-                                    Text("Invalid email/username or password."),
-                              ),
+                            final user = userData.users.firstWhere(
+                              (user) =>
+                                  (user.email == input ||
+                                      user.username == input) &&
+                                  user.password == password,
+                              orElse: () => User(
+                                  fullName: '',
+                                  username: '',
+                                  email: '',
+                                  password: '',
+                                  address: '',
+                                  phone: ''),
                             );
+
+                            if (user.email.isNotEmpty) {
+                              setState(() {
+                                loggedInUser =
+                                    user; // Set global variable loggedInUser
+                              });
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen()),
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                      "Invalid email/username or password."),
+                                ),
+                              );
+                            }
                           }
                         },
                         style: ElevatedButton.styleFrom(

@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:toko_bunga/screens/SignInScreen.dart';
 import 'package:toko_bunga/screens/SignUpScreen.dart';
+import 'package:toko_bunga/models/user.dart';
+
+// Global variable to store the currently logged-in user
+User? loggedInUser;
+
+// Create a list to store multiple user accounts
+List<User> users = [];
 
 void main() {
   runApp(const MyApp());
 }
-
-// Data sementara untuk menyimpan email dan password yang dibuat saat Sign-Up
-String? savedFullName;
-String? savedEmail;
-String? savedUsername;
-String? savedPassword;
-String? savedAddress;
-String? savedPhone;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

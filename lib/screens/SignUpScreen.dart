@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:toko_bunga/main.dart';
+import 'package:toko_bunga/data/user_data.dart'
+    as data; // Alias untuk user_data.dart
+import 'package:toko_bunga/models/user.dart';
+import 'package:toko_bunga/screens/HomeScreen.dart';
+import 'package:toko_bunga/main.dart'; // Untuk mengakses loggedInUser
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -13,9 +17,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
-  TextEditingController();
+      TextEditingController();
   final TextEditingController addressController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+
+  bool _isPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
 
   bool isValidEmail(String email) {
     return email.contains('@');
@@ -23,12 +30,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   bool isValidPassword(String password) {
     final regex = RegExp(
-        r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
+        r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@\$!%*?&])[A-Za-z\d@\$!%*?&]{8,}$');
     return regex.hasMatch(password);
   }
-
-  bool _isPasswordVisible = false;
-  bool _isConfirmPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -159,13 +163,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               content: Text("Passwords do not match."),
                             ),
                           );
+                        } else if (data.users
+                            .any((user) => user.username == username)) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Username already taken."),
+                            ),
+                          );
+                        } else if (data.users
+                            .any((user) => user.email == email)) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Email already in use."),
+                            ),
+                          );
                         } else {
-                          savedFullName = fullName;
-                          savedUsername = username;
-                          savedEmail = email;
-                          savedPassword = password;
-                          savedAddress = address;
-                          savedPhone = phone;
+                          // Create new user and add to users list
+                          final newUser = User(
+                            fullName: fullName,
+                            username: username,
+                            email: email,
+                            password: password,
+                            address: address,
+                            phone: phone,
+                          );
+                          data.users.add(newUser);
+
+                          // Set loggedInUser
+                          setState(() {
+                            loggedInUser = newUser;
+                          });
 
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -173,7 +200,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           );
 
-                          Navigator.pop(context);
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeScreen()),
+                          );
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -219,7 +250,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   Widget _buildTextField(TextEditingController controller, String label,
       {TextInputType inputType = TextInputType.text,
-        bool obscureText = false}) {
+      bool obscureText = false}) {
     return TextField(
       controller: controller,
       keyboardType: inputType,
@@ -231,28 +262,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
         fillColor: Colors.white,
         suffixIcon: (label == "Password" || label == "Confirm Password")
             ? IconButton(
-          icon: Icon(
-            (label == "Password"
-                ? _isPasswordVisible
-                : _isConfirmPasswordVisible)
-                ? Icons.visibility
-                : Icons.visibility_off,
-          ),
-          onPressed: () {
-            setState(() {
-              if (label == "Password") {
-                _isPasswordVisible = !_isPasswordVisible;
-              } else {
-                _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
-              }
-            });
-          },
-          tooltip: (label == "Password"
-              ? _isPasswordVisible
-              : _isConfirmPasswordVisible)
-              ? "Hide Password"
-              : "Show Password",
-        )
+                icon: Icon(
+                  (label == "Password"
+                          ? _isPasswordVisible
+                          : _isConfirmPasswordVisible)
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                ),
+                onPressed: () {
+                  setState(() {
+                    if (label == "Password") {
+                      _isPasswordVisible = !_isPasswordVisible;
+                    } else {
+                      _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                    }
+                  });
+                },
+                tooltip: (label == "Password"
+                        ? _isPasswordVisible
+                        : _isConfirmPasswordVisible)
+                    ? "Hide Password"
+                    : "Show Password",
+              )
             : null,
       ),
     );

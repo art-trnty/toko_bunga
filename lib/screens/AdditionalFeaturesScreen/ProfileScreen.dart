@@ -1,12 +1,13 @@
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toko_bunga/main.dart';
 import 'package:toko_bunga/screens/AdditionalFeaturesScreen/EditProfileScreen.dart';
 import 'package:toko_bunga/screens/PaymentScreen/OrderTransactionsScreen.dart';
 import 'package:toko_bunga/screens/SignInScreen.dart';
+import 'package:toko_bunga/models/user.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -16,12 +17,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  bool isSignedIn = true;
-  String fullName = savedFullName ?? "";
-  String userName = savedUsername ?? "";
-  String address = savedAddress ?? "";
-  String email = savedEmail ?? "";
-  String phone = savedPhone ?? "";
   String _imageFile = ''; // Path to saved profile image
   final picker = ImagePicker();
 
@@ -31,19 +26,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _loadImage(); // Load latest image path
   }
 
-  // Load the saved image path from SharedPreferences
+  // Save the image path for the currently logged-in user
   Future<void> _saveImage(String path) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('profileImagePath', path);
-    debugPrint("Saved image path: $path");
+    if (loggedInUser != null) {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('profileImagePath_${loggedInUser!.email}', path);
+      debugPrint("Saved image path for ${loggedInUser!.email}: $path");
+    }
   }
 
+  // Load the image path for the currently logged-in user
   Future<void> _loadImage() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _imageFile = prefs.getString('profileImagePath') ?? '';
-      debugPrint("Loaded image path: $_imageFile");
-    });
+    if (loggedInUser != null) {
+      final prefs = await SharedPreferences.getInstance();
+      setState(() {
+        _imageFile =
+            prefs.getString('profileImagePath_${loggedInUser!.email}') ?? '';
+        debugPrint("Loaded image path for ${loggedInUser!.email}: $_imageFile");
+      });
+    }
   }
 
   // Show image picker options
@@ -102,17 +103,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
-  void _updateProfile(String newFullname, newEmail, String newPhone,
-      String newAddress, String newImagePath) {
-    setState(() {
-      fullName = newFullname;
-      email = newEmail;
-      phone = newPhone;
-      address = newAddress;
-      _imageFile = newImagePath;
-    });
-  }
-
   void _logOut(BuildContext context) {
     Navigator.pushReplacement(
       context,
@@ -121,14 +111,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<bool> _onWillPop() async {
-    if (!isSignedIn) {
-      return false;
-    }
     return true;
   }
 
   @override
   Widget build(BuildContext context) {
+    if (loggedInUser == null) {
+      return Center(child: Text('No user logged in.'));
+    }
+
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
@@ -169,12 +160,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       'assets/additional/Profile.png'),
                             ),
                           ),
-                          if (isSignedIn)
-                            IconButton(
-                              onPressed: _showPicker,
-                              icon: const Icon(Icons.camera_alt_outlined,
-                                  color: Colors.green),
-                            ),
+                          IconButton(
+                            onPressed: _showPicker,
+                            icon: const Icon(Icons.camera_alt_outlined,
+                                color: Colors.green),
+                          ),
                         ],
                       ),
                     ),
@@ -190,7 +180,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         // Name & Job title
                         Text(
-                          fullName,
+                          loggedInUser!.fullName,
                           style: const TextStyle(
                               fontSize: 24, fontWeight: FontWeight.bold),
                         ),
@@ -206,14 +196,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           margin: const EdgeInsets.symmetric(vertical: 10),
                           child: ListTile(
                             leading: const Icon(Icons.email),
-                            title: Text(email),
+                            title: Text(loggedInUser!.email),
                           ),
                         ),
                         Card(
                           margin: const EdgeInsets.symmetric(vertical: 10),
                           child: ListTile(
                             leading: const Icon(Icons.phone),
-                            title: Text(phone),
+                            title: Text(loggedInUser!.phone),
                           ),
                         ),
                         // Alamat Info
@@ -221,7 +211,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           margin: const EdgeInsets.symmetric(vertical: 10),
                           child: ListTile(
                             leading: const Icon(Icons.home),
-                            title: Text(address),
+                            title: Text(loggedInUser!.address),
                           ),
                         ),
                         const SizedBox(height: 20),
@@ -250,9 +240,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             ElevatedButton(
                               onPressed: () {
-                                setState(() {
-                                  isSignedIn = false;
-                                });
                                 _logOut(context);
                               },
                               child: const Text('Log Out'),
@@ -276,16 +263,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context,
       MaterialPageRoute(
         builder: (context) => EditProfileScreen(
-          initialFullName: fullName,
-          initialEmail: email,
-          initialPhone: phone,
-          initialAddress: address,
+          initialFullName: loggedInUser!.fullName,
+          initialEmail: loggedInUser!.email,
+          initialPhone: loggedInUser!.phone,
+          initialAddress: loggedInUser!.address,
           initialImagePath: _imageFile,
           onUpdateProfile: (newImagePath) {
             setState(() {
               _imageFile = newImagePath;
             });
-            _saveImage(newImagePath); // Simpan path gambar yang diperbarui
+            _saveImage(newImagePath); // Save updated image path
           },
         ),
       ),
@@ -293,15 +280,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     if (result != null && result is Map<String, dynamic>) {
       setState(() {
-        fullName = result['fullName'];
-        email = result['email'];
-        phone = result['phone'];
-        address = result['address'];
+        loggedInUser = User(
+          username: '',
+          password: '',
+          fullName: result['fullName'],
+          email: result['email'],
+          phone: result['phone'],
+          address: result['address'],
+        );
         _imageFile = result['imagePath'];
       });
 
-      await _saveImage(_imageFile); // Simpan path gambar yang diperbarui
-      _loadImage(); // Memuat ulang gambar agar perubahan terlihat
+      await _saveImage(_imageFile); // Save updated image path
+      _loadImage(); // Reload image to reflect changes
     }
   }
 }
