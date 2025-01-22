@@ -1,8 +1,9 @@
 import 'dart:io';
-import 'package:flutter/foundation.dart'; // for kIsWeb
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toko_bunga/main.dart';
 
 class EditProfileScreen extends StatefulWidget {
   final String initialEmail;
@@ -17,7 +18,7 @@ class EditProfileScreen extends StatefulWidget {
     required this.initialEmail,
     required this.initialPhone,
     required this.initialAddress,
-    required this.initialFullName, // Added initialFullName
+    required this.initialFullName,
     required this.initialImagePath,
     required this.onUpdateProfile,
   });
@@ -33,12 +34,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late TextEditingController _addressController;
   String? _profileImagePath;
   final ImagePicker _picker = ImagePicker();
+  String? _phoneErrorText;
 
   @override
   void initState() {
     super.initState();
-    _fullNameController = TextEditingController(
-        text: widget.initialFullName); // Initialize fullName controller
+    _fullNameController = TextEditingController(text: widget.initialFullName);
     _emailController = TextEditingController(text: widget.initialEmail);
     _phoneController = TextEditingController(text: widget.initialPhone);
     _addressController = TextEditingController(text: widget.initialAddress);
@@ -59,167 +60,55 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       });
 
       widget.onUpdateProfile(_profileImagePath ?? '');
-
-      await _saveImagePath(_profileImagePath ?? '');
     }
   }
 
-  Future<void> _saveImagePath(String path) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('profileImagePath', path);
-    debugPrint("Saved image path: $path");
+  bool _validatePhoneNumber(String phone) {
+    if (!RegExp(r'^\d+$').hasMatch(phone)) {
+      setState(() {
+        _phoneErrorText = 'Phone number must contain only digits.';
+      });
+      return false;
+    } else if (phone.length < 11 || phone.length > 13) {
+      setState(() {
+        _phoneErrorText = 'Phone number must be between 11-13 digits.';
+      });
+      return false;
+    }
+    setState(() {
+      _phoneErrorText = null;
+    });
+    return true;
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false, // Hides the back button
-        backgroundColor: Colors.green,
-        title: Center(
-          child: Text(
-            'Edit Profile',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2.0,
-              color: Colors.white,
-              shadows: [
-                Shadow(
-                  offset: Offset(2.0, 2.0),
-                  blurRadius: 3.0,
-                  color: Colors.black45,
-                ),
-              ],
-            ),
-          ),
+  Future<void> _saveProfileData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('fullName', _fullNameController.text);
+    await prefs.setString('email', _emailController.text);
+    await prefs.setString('phone', _phoneController.text);
+    await prefs.setString('address', _addressController.text);
+    await prefs.setString(
+        'profileImagePath', _profileImagePath ?? widget.initialImagePath);
+  }
+
+  void _saveAndClose() {
+    if (_validatePhoneNumber(_phoneController.text)) {
+      _saveProfileData();
+      Navigator.pop(context, {
+        'fullName': _fullNameController.text,
+        'email': _emailController.text,
+        'phone': _phoneController.text,
+        'address': _addressController.text,
+        'gender': loggedInUser!.gender,
+        'imagePath': _profileImagePath ?? widget.initialImagePath,
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Profile updated successfully!'),
+          duration: Duration(seconds: 2),
         ),
-      ),
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image:
-                    AssetImage('assets/Additional/backgroundEditProfile.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          SingleChildScrollView(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Add a SizedBox to provide spacing between the AppBar and the content below
-                const SizedBox(height: 20),
-                // Full Name field
-                Center(
-                  child: Stack(
-                    alignment: Alignment.bottomRight,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          border:
-                              Border.all(color: Colors.deepPurple, width: 3),
-                          shape: BoxShape.circle,
-                        ),
-                        child: CircleAvatar(
-                          radius: 50,
-                          backgroundColor: Colors.grey.shade200,
-                          backgroundImage: _getProfileImageProvider(),
-                        ),
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.camera_alt, color: Colors.green),
-                        onPressed: _pickImage,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextField(
-                  controller: _fullNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Full Name',
-                    border: const OutlineInputBorder(),
-                    prefixIcon: const Icon(Icons.person, color: Colors.green),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    border: const OutlineInputBorder(),
-                    prefixIcon: const Icon(Icons.email, color: Colors.green),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextField(
-                  controller: _phoneController,
-                  decoration: InputDecoration(
-                    labelText: 'Phone Number',
-                    border: const OutlineInputBorder(),
-                    prefixIcon: const Icon(Icons.phone, color: Colors.green),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextField(
-                  controller: _addressController,
-                  decoration: InputDecoration(
-                    labelText: 'Address',
-                    border: const OutlineInputBorder(),
-                    prefixIcon: const Icon(Icons.home, color: Colors.green),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                  ),
-                ),
-                const SizedBox(height: 30),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _saveProfileData();
-                      Navigator.pop(context, {
-                        'fullName': _fullNameController.text, // Save full name
-                        'email': _emailController.text,
-                        'phone': _phoneController.text,
-                        'address': _addressController.text,
-                        'imagePath':
-                            _profileImagePath ?? widget.initialImagePath,
-                      });
-                      _showSuccessNotification(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 50, vertical: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                    ),
-                    child: const Text(
-                      'Save',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color:
-                            Colors.white, // Mengatur warna teks menjadi putih
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+      );
+    }
   }
 
   ImageProvider<Object>? _getProfileImageProvider() {
@@ -233,22 +122,95 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return const AssetImage('assets/Additional/Profile.png');
   }
 
-  void _saveProfileData() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(
-        'fullName', _fullNameController.text); // Save full name
-    await prefs.setString('email', _emailController.text);
-    await prefs.setString('phone', _phoneController.text);
-    await prefs.setString('address', _addressController.text);
-    await prefs.setString(
-        'profileImagePath', _profileImagePath ?? widget.initialImagePath);
-  }
-
-  void _showSuccessNotification(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Profile updated successfully!'),
-        duration: Duration(seconds: 2),
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Edit Profile'),
+        backgroundColor: Colors.green,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 20),
+            Center(
+              child: Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: _getProfileImageProvider(),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.camera_alt, color: Colors.green),
+                    onPressed: _pickImage,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            TextField(
+              controller: _fullNameController,
+              decoration: const InputDecoration(
+                labelText: 'Full Name',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.person, color: Colors.green),
+              ),
+            ),
+            const SizedBox(height: 20),
+            TextField(
+              controller: _emailController,
+              decoration: const InputDecoration(
+                labelText: 'Email',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.email, color: Colors.green),
+              ),
+            ),
+            const SizedBox(height: 20),
+            TextField(
+              controller: _phoneController,
+              keyboardType: TextInputType.number,
+              maxLength: 13,
+              decoration: InputDecoration(
+                labelText: 'Phone Number',
+                border: const OutlineInputBorder(),
+                prefixIcon: const Icon(Icons.phone, color: Colors.green),
+                errorText: _phoneErrorText,
+              ),
+            ),
+            const SizedBox(height: 20),
+            TextField(
+              controller: _addressController,
+              decoration: const InputDecoration(
+                labelText: 'Address',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.home, color: Colors.green),
+              ),
+            ),
+            const SizedBox(height: 30),
+            Center(
+              child: ElevatedButton(
+                onPressed: _saveAndClose,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 50,
+                    vertical: 15,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+                child: const Text(
+                  'Save',
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

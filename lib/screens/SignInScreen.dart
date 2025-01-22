@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:toko_bunga/data/user_data.dart'
-    as userData; // Beri alias userData
+import 'package:toko_bunga/data/user_data.dart' as userData;
 import 'package:toko_bunga/screens/HomeScreen.dart';
-import 'package:toko_bunga/models/user.dart';
+import 'package:toko_bunga/models/UserModels.dart';
 import 'package:toko_bunga/main.dart'; // Mengimpor global variable loggedInUser
 
 class SignInScreen extends StatefulWidget {
@@ -91,11 +89,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           final password = passwordController.text;
 
                           if (input.isEmpty || password.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text("Please fill in all fields."),
-                              ),
-                            );
+                            _showSnackBar(
+                                context, "Please fill in all fields.");
                           } else {
                             final user = userData.users.firstWhere(
                               (user) =>
@@ -103,12 +98,15 @@ class _SignInScreenState extends State<SignInScreen> {
                                       user.username == input) &&
                                   user.password == password,
                               orElse: () => User(
-                                  fullName: '',
-                                  username: '',
-                                  email: '',
-                                  password: '',
-                                  address: '',
-                                  phone: ''),
+                                fullName: '',
+                                username: '',
+                                email: '',
+                                password: '',
+                                address: '',
+                                phone: '',
+                                role: '',
+                                gender: '',
+                              ),
                             );
 
                             if (user.email.isNotEmpty) {
@@ -116,18 +114,17 @@ class _SignInScreenState extends State<SignInScreen> {
                                 loggedInUser =
                                     user; // Set global variable loggedInUser
                               });
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomeScreen()),
-                              );
+                              _showSnackBar(context, "Login successful!");
+                              Future.delayed(Duration(seconds: 2), () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomeScreen()),
+                                );
+                              });
                             } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                      "Invalid email/username or password."),
-                                ),
-                              );
+                              _showSnackBar(context,
+                                  "Invalid email/username or password.");
                             }
                           }
                         },
@@ -185,9 +182,9 @@ class _SignInScreenState extends State<SignInScreen> {
         fillColor: Colors.white,
         suffixIcon: label == "Password"
             ? IconButton(
-                icon: Icon(
-                  _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                ),
+                icon: Icon(_isPasswordVisible
+                    ? Icons.visibility
+                    : Icons.visibility_off),
                 onPressed: () {
                   setState(() {
                     _isPasswordVisible = !_isPasswordVisible;
@@ -197,6 +194,12 @@ class _SignInScreenState extends State<SignInScreen> {
               )
             : null,
       ),
+    );
+  }
+
+  void _showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
     );
   }
 }

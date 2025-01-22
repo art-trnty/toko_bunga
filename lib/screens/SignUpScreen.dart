@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:toko_bunga/data/user_data.dart'
-    as data; // Alias untuk user_data.dart
-import 'package:toko_bunga/models/user.dart';
-import 'package:toko_bunga/screens/HomeScreen.dart';
-import 'package:toko_bunga/main.dart'; // Untuk mengakses loggedInUser
+import 'package:flutter/widgets.dart';
+import 'package:toko_bunga/data/user_data.dart' as data;
+import 'package:toko_bunga/models/UserModels.dart';
+import 'package:toko_bunga/screens/SignInScreen.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -21,8 +20,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController addressController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
+  String? _role;
+  String? _gender;
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
+  String? _phoneErrorText;
 
   bool isValidEmail(String email) {
     return email.contains('@');
@@ -32,6 +34,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final regex = RegExp(
         r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@\$!%*?&])[A-Za-z\d@\$!%*?&]{8,}$');
     return regex.hasMatch(password);
+  }
+
+  bool _validatePhoneNumber(String phone) {
+    if (!RegExp(r'^\d+$').hasMatch(phone)) {
+      setState(() {
+        _phoneErrorText = 'Phone number must contain only digits.';
+      });
+      return false;
+    } else if (phone.length < 11 || phone.length > 13) {
+      setState(() {
+        _phoneErrorText = 'Phone number must be between 11-13 digits.';
+      });
+      return false;
+    }
+    setState(() {
+      _phoneErrorText = null;
+    });
+    return true;
   }
 
   @override
@@ -119,7 +139,74 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         border: OutlineInputBorder(),
                         filled: true,
                         fillColor: Colors.white,
+                        errorText: _phoneErrorText,
                       ),
+                    ),
+                    const SizedBox(height: 16),
+                    ExpansionTile(
+                      title: Text(
+                        "Select Gender",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      children: [
+                        ListTile(
+                          title: const Text('Male'),
+                          leading: Radio<String>(
+                            value: 'Male',
+                            groupValue: _gender,
+                            onChanged: (value) {
+                              setState(() {
+                                _gender = value;
+                              });
+                            },
+                          ),
+                        ),
+                        ListTile(
+                          title: const Text('Female'),
+                          leading: Radio<String>(
+                            value: 'Female',
+                            groupValue: _gender,
+                            onChanged: (value) {
+                              setState(() {
+                                _gender = value;
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    ExpansionTile(
+                      title: Text(
+                        "Select Role",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      children: [
+                        ListTile(
+                          title: const Text('Customer'),
+                          leading: Radio<String>(
+                            value: 'customer',
+                            groupValue: _role,
+                            onChanged: (value) {
+                              setState(() {
+                                _role = value;
+                              });
+                            },
+                          ),
+                        ),
+                        ListTile(
+                          title: const Text('Seller'),
+                          leading: Radio<String>(
+                            value: 'seller',
+                            groupValue: _role,
+                            onChanged: (value) {
+                              setState(() {
+                                _role = value;
+                              });
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 24),
                     ElevatedButton(
@@ -138,10 +225,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             password.isEmpty ||
                             confirmPassword.isEmpty ||
                             address.isEmpty ||
-                            phone.isEmpty) {
+                            phone.isEmpty ||
+                            _role == null ||
+                            _gender == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text("Please fill in all fields."),
+                              content: Text(
+                                  "Please fill in all fields and select a role and gender."),
                             ),
                           );
                         } else if (!isValidEmail(email)) {
@@ -177,8 +267,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               content: Text("Email already in use."),
                             ),
                           );
+                        } else if (!_validatePhoneNumber(phone)) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Phone number is not valid."),
+                            ),
+                          );
                         } else {
-                          // Create new user and add to users list
                           final newUser = User(
                             fullName: fullName,
                             username: username,
@@ -186,24 +281,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             password: password,
                             address: address,
                             phone: phone,
+                            role: _role!,
+                            gender: _gender!,
                           );
                           data.users.add(newUser);
-
-                          // Set loggedInUser
-                          setState(() {
-                            loggedInUser = newUser;
-                          });
-
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text("Account created for $fullName"),
+                            const SnackBar(
+                              content: Text("Account created successfully."),
                             ),
                           );
-
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomeScreen()),
+                                builder: (context) => SignInScreen()),
                           );
                         }
                       },

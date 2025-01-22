@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toko_bunga/screens/SignInScreen.dart';
 import 'package:toko_bunga/screens/SignUpScreen.dart';
-import 'package:toko_bunga/models/user.dart';
+import 'package:toko_bunga/models/UserModels.dart';
 
 // Global variable to store the currently logged-in user
 User? loggedInUser;
