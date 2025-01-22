@@ -76,6 +76,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         return 'Seller';
       case 'customer':
         return 'Customer';
+      case 'admin':
+        return 'Admin';
       default:
         return 'User';
     }
@@ -122,10 +124,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           _imageFile = pickedFile.path;
         });
         await _saveProfileData(); // Save updated profile data
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-              content: Text('Profile picture updated successfully!')),
-        );
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Profile picture updated successfully!')));
       } else {
         debugPrint('No image selected.');
       }
@@ -136,9 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void _logOut(BuildContext context) {
     Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => SignInScreen()),
-    );
+        context, MaterialPageRoute(builder: (context) => SignInScreen()));
   }
 
   Future<bool> _onWillPop() async {
@@ -149,7 +147,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (loggedInUser == null) {
       return const Center(child: Text('No user logged in.'));
     }
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -198,10 +195,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => OrderTransactionsScreen()),
-                );
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => OrderTransactionsScreen()));
               },
               child: const Text('Order Transactions'),
             ),

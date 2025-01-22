@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:toko_bunga/data/user_data.dart' as userData;
+import 'package:toko_bunga/data/admin_data.dart' as adminData;
 import 'package:toko_bunga/screens/HomeScreen.dart';
 import 'package:toko_bunga/models/UserModels.dart';
+import 'package:toko_bunga/models/AdminModels.dart';
 import 'package:toko_bunga/main.dart'; // Mengimpor global variable loggedInUser
 
 class SignInScreen extends StatefulWidget {
@@ -109,10 +111,38 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                             );
 
-                            if (user.email.isNotEmpty) {
+                            final admin = adminData.admins.firstWhere(
+                              (admin) =>
+                                  (admin.email == input ||
+                                      admin.username == input) &&
+                                  admin.password == password,
+                              orElse: () => Admin(
+                                fullName: '',
+                                username: '',
+                                email: '',
+                                password: '',
+                                address: '',
+                                phone: '',
+                                role: '',
+                                gender: '',
+                              ),
+                            );
+
+                            if (user.email.isNotEmpty ||
+                                admin.email.isNotEmpty) {
                               setState(() {
-                                loggedInUser =
-                                    user; // Set global variable loggedInUser
+                                loggedInUser = user.email.isNotEmpty
+                                    ? user
+                                    : User(
+                                        fullName: admin.fullName,
+                                        username: admin.username,
+                                        email: admin.email,
+                                        password: admin.password,
+                                        address: admin.address,
+                                        phone: admin.phone,
+                                        role: admin.role,
+                                        gender: admin.gender,
+                                      );
                               });
                               _showSnackBar(context, "Login successful!");
                               Future.delayed(Duration(seconds: 2), () {
